@@ -1,0 +1,28 @@
+.container {
+
+    width: min(100% - 32px, 1200px);
+
+    margin-inline: auto;
+
+}
+
+
+.page-section {
+
+    padding-block: var(--space-xl);
+
+}
+
+
+.flex {
+
+    display: flex;
+
+}
+
+
+.grid {
+
+    display: grid;
+
+}

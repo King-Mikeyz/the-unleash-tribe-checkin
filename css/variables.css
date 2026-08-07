@@ -1,0 +1,99 @@
+:root {
+
+    /* =========================
+       THE UNLEASH TRIBE BRAND
+       ========================= */
+
+    --color-primary: #4B1B8F;
+    --color-primary-dark: #351263;
+    --color-primary-light: #6B3BB5;
+
+
+    --color-accent: #D4AF37;
+    --color-accent-light: #E8C766;
+
+
+    /* =========================
+       BACKGROUNDS
+       ========================= */
+
+    --color-background: #FFFFFF;
+    --color-surface: #FAFAFA;
+
+
+    /* =========================
+       TEXT COLORS
+       ========================= */
+
+    --color-text-primary: #1F1F1F;
+    --color-text-secondary: #6B7280;
+    --color-text-light: #FFFFFF;
+
+
+    /* =========================
+       STATUS COLORS
+       ========================= */
+
+    --color-success: #16A34A;
+    --color-warning: #D97706;
+    --color-error: #DC2626;
+
+
+    /* =========================
+       BORDERS & SHADOWS
+       ========================= */
+
+    --color-border: #E5E7EB;
+
+
+    --shadow-small:
+        0 2px 8px rgba(0,0,0,0.06);
+
+
+    --shadow-medium:
+        0 8px 24px rgba(0,0,0,0.08);
+
+
+    --shadow-large:
+        0 16px 40px rgba(0,0,0,0.12);
+
+
+    /* =========================
+       BORDER RADIUS
+       ========================= */
+
+    --radius-small: 8px;
+
+    --radius-medium: 16px;
+
+    --radius-large: 24px;
+
+
+    /* =========================
+       SPACING SYSTEM
+       ========================= */
+
+    --space-xs: 4px;
+
+    --space-sm: 8px;
+
+    --space-md: 16px;
+
+    --space-lg: 24px;
+
+    --space-xl: 40px;
+
+    --space-xxl: 64px;
+
+
+    /* =========================
+       TYPOGRAPHY
+       ========================= */
+
+    --font-family:
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+}

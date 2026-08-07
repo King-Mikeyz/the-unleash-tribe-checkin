@@ -1,0 +1,82 @@
+/* =========================
+   GLOBAL RESET
+   ========================= */
+
+
+*,
+*::before,
+*::after {
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: var(--color-background);
+
+    color: var(--color-text-primary);
+
+    font-family: var(--font-family);
+
+    line-height: 1.6;
+
+}
+
+
+img {
+
+    max-width: 100%;
+
+    display: block;
+
+}
+
+
+button,
+input,
+textarea,
+select {
+
+    font: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+h1,
+h2,
+h3,
+h4,
+p {
+
+    margin-top: 0;
+
+}
