@@ -1,0 +1,8 @@
+﻿-- =========================================================
+-- THE UNLEASH TRIBE
+-- LOCAL DEVELOPMENT SEED FILE
+--
+-- Intentionally minimal.
+-- Permanent platform configuration belongs in migrations.
+-- Temporary local test users/data can be added here later.
+-- =========================================================
