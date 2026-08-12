@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Check-In History | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/history.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="dashboard.html"
+                class="member-brand"
+            >
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+                    <strong>The Unleash Tribe</strong>
+                    <small>Check-In History</small>
+                </span>
+            </a>
+
+
+            <div class="member-header-actions">
+
+                <a
+                    href="dashboard.html"
+                    class="member-nav-link"
+                >
+                    Today
+                </a>
+
+                <a
+                    id="admin-link"
+                    href="admin.html"
+                    class="member-nav-link"
+                    hidden
+                >
+                    Admin
+                </a>
+
+                <button
+                    id="logout-button"
+                    type="button"
+                    class="header-signout"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="history-main">
+
+        <div class="container">
+
+            <section class="history-hero">
+
+                <p class="dashboard-eyebrow">
+                    Accountability
+                </p>
+
+                <h1>
+                    Your History
+                </h1>
+
+                <p>
+                    Review your recent consistency and missed days.
+                </p>
+
+            </section>
+
+
+            <div
+                id="history-list"
+                class="history-list"
+            >
+                Loading history...
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/history.js"
+    ></script>
+
+</body>
+
+</html>

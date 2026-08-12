@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Accountability Report | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-report.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="admin.html"
+                class="member-brand"
+            >
+                <span class="member-brand-mark">UT</span>
+
+                <span class="member-brand-copy">
+                    <strong>The Unleash Tribe</strong>
+                    <small>Admin</small>
+                </span>
+            </a>
+
+
+            <nav class="member-header-actions">
+
+                <a href="admin.html" class="member-nav-link">
+                    Admin Console
+                </a>
+
+                <a href="members.html" class="member-nav-link">
+                    Members
+                </a>
+
+                <a href="admin-tasks.html" class="member-nav-link">
+                    Task Manager
+                </a>
+
+                <button
+                    id="logout-button"
+                    class="header-signout"
+                    type="button"
+                >
+                    Sign Out
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="report-main">
+
+        <div class="container">
+
+            <section class="report-hero">
+
+                <div>
+
+                    <p class="dashboard-eyebrow">
+                        Accountability
+                    </p>
+
+                    <h1>
+                        Daily Report
+                    </h1>
+
+                    <p>
+                        See exactly who completed, started
+                        or missed their check-in.
+                    </p>
+
+                </div>
+
+
+                <label class="report-date-control">
+
+                    Accountability date
+
+                    <input
+                        id="report-date"
+                        type="date"
+                    >
+
+                </label>
+
+            </section>
+
+
+            <section class="report-stats">
+
+                <article>
+                    <span>Done</span>
+                    <strong id="done-count">0</strong>
+                </article>
+
+                <article>
+                    <span>Incomplete</span>
+                    <strong id="incomplete-count">0</strong>
+                </article>
+
+                <article>
+                    <span>Not Started</span>
+                    <strong id="not-started-count">0</strong>
+                </article>
+
+                <article>
+                    <span>Expected Members</span>
+                    <strong id="expected-count">0</strong>
+                </article>
+
+            </section>
+
+
+            <div
+                id="report-message"
+                class="report-message"
+                hidden
+            ></div>
+
+
+            <section class="report-panel">
+
+                <h2>
+                    Member Results
+                </h2>
+
+                <div
+                    id="report-list"
+                    class="report-list"
+                >
+                    Loading report...
+                </div>
+
+            </section>
+
+
+            <section class="backfill-panel">
+
+                <div class="backfill-heading">
+
+                    <p class="dashboard-eyebrow">
+                        Historical Entry
+                    </p>
+
+                    <h2>
+                        Backfill a previous check-in
+                    </h2>
+
+                    <p>
+                        Use only when a legitimate historical
+                        record needs to be entered manually.
+                    </p>
+
+                </div>
+
+
+                <form id="backfill-form">
+
+                    <div class="backfill-top-row">
+
+                        <label>
+
+                            Member
+
+                            <select
+                                id="backfill-member"
+                                required
+                            ></select>
+
+                        </label>
+
+
+                        <label>
+
+                            Date
+
+                            <input
+                                id="backfill-date"
+                                type="date"
+                                required
+                            >
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        id="backfill-task-list"
+                        class="backfill-task-list"
+                    >
+                        Choose a historical date.
+                    </div>
+
+
+                    <label class="backfill-reason">
+
+                        Reason for historical entry
+
+                        <textarea
+                            id="backfill-reason"
+                            rows="3"
+                            required
+                            minlength="5"
+                        ></textarea>
+
+                    </label>
+
+
+                    <button
+                        type="submit"
+                        class="backfill-submit"
+                    >
+                        Save Historical Check-In
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/admin-report.js"
+    ></script>
+
+</body>
+
+</html>

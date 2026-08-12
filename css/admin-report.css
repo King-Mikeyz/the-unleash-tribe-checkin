@@ -1,0 +1,306 @@
+.report-main {
+    padding: 48px 0 80px;
+}
+
+
+.report-hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+
+
+.report-hero h1 {
+    margin-bottom: 10px;
+    color: #2f0b5e;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.05em;
+}
+
+
+.report-hero p:last-child {
+    margin-bottom: 0;
+    color: #776f7d;
+}
+
+
+.report-date-control {
+    display: grid;
+    gap: 7px;
+    min-width: 220px;
+    color: #5e5664;
+    font-size: 0.8rem;
+    font-weight: 750;
+}
+
+
+.report-date-control input,
+.backfill-panel input,
+.backfill-panel select,
+.backfill-panel textarea {
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #d8cfdf;
+    border-radius: 9px;
+    background: #ffffff;
+}
+
+
+.report-stats {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+
+.report-stats article {
+    padding: 20px;
+    border: 1px solid #e7dfec;
+    border-radius: 17px 6px 17px 17px;
+    background: #ffffff;
+}
+
+
+.report-stats span {
+    display: block;
+    margin-bottom: 10px;
+    color: #817889;
+    font-size: 0.78rem;
+}
+
+
+.report-stats strong {
+    color: #2f0b5e;
+    font-size: 1.9rem;
+}
+
+
+.report-message {
+    margin-bottom: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f3eef8;
+    color: #351263;
+}
+
+
+.report-panel,
+.backfill-panel {
+    padding: 24px;
+    border: 1px solid #e7dfec;
+    border-radius: 22px 7px 22px 22px;
+    background: #ffffff;
+}
+
+
+.report-panel {
+    margin-bottom: 24px;
+}
+
+
+.report-panel h2,
+.backfill-heading h2 {
+    color: #2f0b5e;
+}
+
+
+.report-list {
+    display: grid;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+
+.report-row {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.3fr)
+        130px
+        100px
+        minmax(150px, 0.8fr);
+    gap: 18px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #eee8f1;
+    border-radius: 11px;
+    background: #fbfafc;
+}
+
+
+.report-member strong {
+    display: block;
+    color: #2f0b5e;
+}
+
+
+.report-member small {
+    color: #827989;
+}
+
+
+.report-status {
+    width: fit-content;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 850;
+    text-transform: uppercase;
+}
+
+
+.report-status.done {
+    background: #edf8f0;
+    color: #166534;
+}
+
+
+.report-status.incomplete {
+    background: #fff4d8;
+    color: #775d08;
+}
+
+
+.report-status.not_started {
+    background: #f0ecf3;
+    color: #6e6275;
+}
+
+
+.report-score {
+    color: #2f0b5e;
+    font-weight: 800;
+}
+
+
+.report-bar {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #ece7ef;
+}
+
+
+.report-bar span {
+    display: block;
+    height: 100%;
+    background: #d4af37;
+}
+
+
+.backfill-heading {
+    margin-bottom: 20px;
+}
+
+
+.backfill-heading p:last-child {
+    color: #776f7d;
+}
+
+
+.backfill-top-row {
+    display: grid;
+    grid-template-columns:
+        1fr 220px;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+
+.backfill-top-row label,
+.backfill-reason {
+    display: grid;
+    gap: 7px;
+    color: #5e5664;
+    font-size: 0.82rem;
+    font-weight: 750;
+}
+
+
+.backfill-task-list {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.backfill-category {
+    padding: 17px;
+    border: 1px solid #ece6f0;
+    border-radius: 13px;
+    background: #faf9fb;
+}
+
+
+.backfill-category h3 {
+    color: #2f0b5e;
+}
+
+
+.backfill-checkboxes {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+
+.backfill-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+
+.backfill-submit {
+    min-height: 48px;
+    margin-top: 17px;
+    padding: 10px 17px;
+    border: 0;
+    border-radius: 9px;
+    background: #4b1b8f;
+    color: #ffffff;
+    font-weight: 850;
+}
+
+
+@media (max-width: 800px) {
+
+    .report-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .report-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .report-hero {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+
+    .report-date-control {
+        width: 100%;
+    }
+
+
+    .backfill-top-row,
+    .backfill-checkboxes {
+        grid-template-columns: 1fr;
+    }
+
+}

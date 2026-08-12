@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Request Access | The Unleash Tribe</title>
+
+    <meta
+        name="description"
+        content="Apply to join The Unleash Tribe accountability community."
+    >
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/onboarding.css">
+
+</head>
+
+
+<body class="auth-page">
+
+    <header class="auth-header">
+
+        <div class="container auth-header-inner">
+
+            <a
+                href="index.html"
+                class="auth-brand"
+            >
+
+                <span class="auth-brand-symbol">
+                    UT
+                </span>
+
+                <span>
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Daily Check In
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <a
+                href="index.html"
+                class="auth-home-link"
+            >
+                Back to home
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="onboarding-main">
+
+        <section class="onboarding-shell">
+
+            <header class="onboarding-hero">
+
+                <p class="auth-eyebrow">
+                    Membership Application
+                </p>
+
+                <h1 id="questionnaire-title">
+                    The Unleash Tribe Onboarding Form
+                </h1>
+
+                <p id="questionnaire-intro">
+                    Loading application...
+                </p>
+
+            </header>
+
+
+            <div
+                id="request-message"
+                class="auth-message"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+
+            <form
+                id="request-form"
+                class="onboarding-form"
+                novalidate
+            >
+
+                <section class="question-section">
+
+                    <div class="question-section-heading">
+
+                        <span>Account</span>
+
+                        <h2>
+                            Contact Information
+                        </h2>
+
+                    </div>
+
+
+                    <div class="question-grid">
+
+                        <label class="question-field">
+
+                            <span>
+                                Email Address
+                                <strong>*</strong>
+                            </span>
+
+                            <input
+                                id="application-email"
+                                type="email"
+                                autocomplete="email"
+                                required
+                            >
+
+                            <small>
+                                This email will receive your account invitation
+                                if your application is approved.
+                            </small>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <div id="dynamic-questions">
+
+                    <div class="question-loading">
+                        Loading onboarding questions...
+                    </div>
+
+                </div>
+
+
+                <section class="privacy-confirmation">
+
+                    <label>
+
+                        <input
+                            id="privacy-consent"
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            I understand that my application responses
+                            will be reviewed by authorized administrators
+                            of The Unleash Tribe for membership and support purposes.
+                        </span>
+
+                    </label>
+
+                </section>
+
+
+                <div class="application-submit-row">
+
+                    <button
+                        id="request-button"
+                        type="submit"
+                        class="auth-submit"
+                    >
+                        Submit Application
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>Already a member?</span>
+            </div>
+
+
+            <a
+                href="login.html"
+                class="auth-secondary-action"
+            >
+                Member Login
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/request-access.js"
+    ></script>
+
+</body>
+
+</html>

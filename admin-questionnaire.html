@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Onboarding Questionnaire | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-questionnaire.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="admin.html"
+                class="member-brand"
+            >
+
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Admin
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="member-header-actions">
+
+                <a
+                    href="admin.html"
+                    class="member-nav-link"
+                >
+                    Admin Console
+                </a>
+
+                <a
+                    href="members.html"
+                    class="member-nav-link"
+                >
+                    Members
+                </a>
+
+                <a
+                    href="admin-tasks.html"
+                    class="member-nav-link"
+                >
+                    Task Manager
+                </a>
+
+                <button
+                    id="logout-button"
+                    type="button"
+                    class="header-signout"
+                >
+                    Sign Out
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="questionnaire-admin-main">
+
+        <div class="container">
+
+            <section class="questionnaire-admin-hero">
+
+                <div>
+
+                    <p class="dashboard-eyebrow">
+                        Administration
+                    </p>
+
+                    <h1>
+                        Onboarding Questionnaire
+                    </h1>
+
+                    <p>
+                        Edit a draft safely, then publish it
+                        when you are ready. Existing applications
+                        remain connected to the version they answered.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="create-draft-button"
+                    type="button"
+                    class="primary-admin-action"
+                >
+                    Create Draft
+                </button>
+
+            </section>
+
+
+            <div
+                id="questionnaire-message"
+                class="questionnaire-message"
+                hidden
+            ></div>
+
+
+            <section class="version-strip">
+
+                <div>
+                    <span>Published</span>
+                    <strong id="published-version">
+                        —
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Draft</span>
+                    <strong id="draft-version">
+                        None
+                    </strong>
+                </div>
+
+                <button
+                    id="publish-button"
+                    type="button"
+                    class="publish-button"
+                    hidden
+                >
+                    Publish Draft
+                </button>
+
+            </section>
+
+
+            <section
+                id="editor-section"
+                class="questionnaire-editor-grid"
+                hidden
+            >
+
+                <form
+                    id="question-form"
+                    class="question-editor-card"
+                >
+
+                    <input
+                        id="question-id"
+                        type="hidden"
+                    >
+
+
+                    <p class="dashboard-eyebrow">
+                        Draft Question
+                    </p>
+
+                    <h2 id="question-form-title">
+                        Add Question
+                    </h2>
+
+
+                    <div class="editor-two-column">
+
+                        <label>
+                            Section Key
+
+                            <input
+                                id="section-key"
+                                type="text"
+                                placeholder="personal_growth"
+                                required
+                            >
+                        </label>
+
+
+                        <label>
+                            Section Title
+
+                            <input
+                                id="section-title"
+                                type="text"
+                                placeholder="Personal Growth"
+                                required
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <label>
+                        Question Key
+
+                        <input
+                            id="question-key"
+                            type="text"
+                            placeholder="current_struggle"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Question
+
+                        <textarea
+                            id="question-label"
+                            rows="3"
+                            required
+                        ></textarea>
+                    </label>
+
+
+                    <label>
+                        Help Text
+
+                        <textarea
+                            id="question-help"
+                            rows="2"
+                        ></textarea>
+                    </label>
+
+
+                    <div class="editor-two-column">
+
+                        <label>
+                            Field Type
+
+                            <select
+                                id="question-type"
+                                required
+                            >
+
+                                <option value="short_text">
+                                    Short Text
+                                </option>
+
+                                <option value="long_text">
+                                    Long Text
+                                </option>
+
+                                <option value="yes_no">
+                                    Yes / No
+                                </option>
+
+                                <option value="single_choice">
+                                    Single Choice
+                                </option>
+
+                                <option value="multiple_choice">
+                                    Multiple Choice
+                                </option>
+
+                                <option value="number">
+                                    Number
+                                </option>
+
+                                <option value="date">
+                                    Date
+                                </option>
+
+                                <option value="scale">
+                                    Scale 1–10
+                                </option>
+
+                            </select>
+
+                        </label>
+
+
+                        <label>
+                            Sort Order
+
+                            <input
+                                id="question-order"
+                                type="number"
+                                min="1"
+                                step="1"
+                                required
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <label>
+                        Choice Options
+
+                        <textarea
+                            id="question-options"
+                            rows="3"
+                            placeholder="One option per line"
+                        ></textarea>
+
+                        <small>
+                            Needed for single-choice and
+                            multiple-choice fields.
+                        </small>
+                    </label>
+
+
+                    <label class="editor-checkbox">
+
+                        <input
+                            id="question-required"
+                            type="checkbox"
+                        >
+
+                        Required question
+
+                    </label>
+
+
+                    <div class="editor-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-admin-action"
+                        >
+                            Save Question
+                        </button>
+
+                        <button
+                            id="cancel-edit-button"
+                            type="button"
+                            class="secondary-admin-action"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <section class="draft-question-list-card">
+
+                    <div class="draft-list-heading">
+
+                        <div>
+
+                            <p class="dashboard-eyebrow">
+                                Current Draft
+                            </p>
+
+                            <h2>
+                                Questions
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="draft-question-list"
+                        class="draft-question-list"
+                    >
+                        No draft loaded.
+                    </div>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/admin-questionnaire.js"
+    ></script>
+
+</body>
+
+</html>

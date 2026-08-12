@@ -1,0 +1,290 @@
+.questionnaire-admin-main {
+    padding: 48px 0 80px;
+}
+
+
+.questionnaire-admin-hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 24px;
+}
+
+
+.questionnaire-admin-hero > div {
+    max-width: 760px;
+}
+
+
+.questionnaire-admin-hero h1 {
+    margin-bottom: 12px;
+    color: #2f0b5e;
+    font-size: clamp(2.4rem, 7vw, 4.3rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+
+.questionnaire-admin-hero p:last-child {
+    margin-bottom: 0;
+    color: #746c7a;
+    line-height: 1.7;
+}
+
+
+.primary-admin-action,
+.publish-button {
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 9px;
+    background: #4b1b8f;
+    color: #ffffff;
+    font-weight: 850;
+}
+
+
+.secondary-admin-action {
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid #d6ccdd;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #4b1b8f;
+    font-weight: 800;
+}
+
+
+.questionnaire-message {
+    margin-bottom: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f3eef8;
+    color: #351263;
+}
+
+
+.version-strip {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 24px;
+    padding: 18px 20px;
+    border: 1px solid #e7dfec;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+
+.version-strip > div span,
+.version-strip > div strong {
+    display: block;
+}
+
+
+.version-strip span {
+    margin-bottom: 4px;
+    color: #827989;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+}
+
+
+.version-strip strong {
+    color: #2f0b5e;
+}
+
+
+.version-strip .publish-button {
+    margin-left: auto;
+}
+
+
+.questionnaire-editor-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(320px, 0.8fr)
+        minmax(0, 1.2fr);
+    gap: 20px;
+}
+
+
+.question-editor-card,
+.draft-question-list-card {
+    padding: 24px;
+    border: 1px solid #e7dfec;
+    border-radius: 22px 7px 22px 22px;
+    background: #ffffff;
+}
+
+
+.question-editor-card h2,
+.draft-question-list-card h2 {
+    color: #2f0b5e;
+}
+
+
+.question-editor-card {
+    display: grid;
+    align-content: start;
+    gap: 16px;
+}
+
+
+.question-editor-card label {
+    display: grid;
+    gap: 7px;
+    color: #514758;
+    font-size: 0.82rem;
+    font-weight: 750;
+}
+
+
+.question-editor-card input,
+.question-editor-card select,
+.question-editor-card textarea {
+    width: 100%;
+    min-height: 45px;
+    padding: 9px 11px;
+    border: 1px solid #d8cfdf;
+    border-radius: 9px;
+    background: #ffffff;
+}
+
+
+.question-editor-card textarea {
+    resize: vertical;
+}
+
+
+.editor-two-column {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+
+.editor-checkbox {
+    display: flex !important;
+    align-items: center;
+    gap: 9px;
+}
+
+
+.editor-checkbox input {
+    width: 18px;
+    min-height: 18px;
+}
+
+
+.editor-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+.draft-question-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+
+.draft-question {
+    padding: 15px;
+    border: 1px solid #ece6ef;
+    border-radius: 11px;
+    background: #faf9fb;
+}
+
+
+.draft-question-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+
+.draft-question strong {
+    color: #2f0b5e;
+}
+
+
+.draft-question small {
+    color: #837a89;
+}
+
+
+.draft-question-meta {
+    margin-top: 7px;
+    color: #887f8e;
+    font-size: 0.75rem;
+}
+
+
+.draft-question-actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+
+.draft-question-actions button {
+    min-height: 35px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+
+.edit-question {
+    border: 1px solid #cdbed9;
+    background: #ffffff;
+    color: #4b1b8f;
+}
+
+
+.delete-question {
+    border: 1px solid #e2c8c8;
+    background: #ffffff;
+    color: #922626;
+}
+
+
+@media (max-width: 850px) {
+
+    .questionnaire-admin-hero {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+
+    .questionnaire-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .version-strip {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+
+    .version-strip .publish-button {
+        margin-left: 0;
+    }
+
+
+    .editor-two-column {
+        grid-template-columns: 1fr;
+    }
+
+}

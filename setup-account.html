@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Set Up Account | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/onboarding.css">
+
+</head>
+
+
+<body class="auth-page">
+
+    <header class="auth-header">
+
+        <div class="container auth-header-inner">
+
+            <a
+                href="index.html"
+                class="auth-brand"
+            >
+
+                <span class="auth-brand-symbol">
+                    UT
+                </span>
+
+                <span>
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Account Setup
+                    </small>
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="onboarding-main">
+
+        <section class="setup-card">
+
+            <p class="auth-eyebrow">
+                Welcome to the Tribe
+            </p>
+
+            <h1>
+                Complete your account.
+            </h1>
+
+            <p>
+                Choose your username and password.
+                Your email has been verified through
+                the invitation you received.
+            </p>
+
+
+            <div
+                id="setup-message"
+                class="auth-message"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+
+            <form
+                id="setup-form"
+                class="setup-form"
+                hidden
+            >
+
+                <label>
+
+                    Username
+
+                    <input
+                        id="setup-username"
+                        type="text"
+                        minlength="3"
+                        maxlength="30"
+                        pattern="[A-Za-z0-9_]{3,30}"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <small>
+                        3–30 letters, numbers or underscores.
+                    </small>
+
+                </label>
+
+
+                <label>
+
+                    Password
+
+                    <input
+                        id="setup-password"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Confirm Password
+
+                    <input
+                        id="setup-confirm-password"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </label>
+
+
+                <button
+                    id="setup-button"
+                    type="submit"
+                    class="auth-submit"
+                >
+                    Complete Account Setup
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/setup-account.js"
+    ></script>
+
+</body>
+
+</html>

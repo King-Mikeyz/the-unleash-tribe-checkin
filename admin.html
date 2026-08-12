@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Console | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="admin.html"
+                class="member-brand"
+            >
+
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Admin
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="member-header-actions">
+
+                <a
+                    href="dashboard.html"
+                    class="member-nav-link"
+                >
+                    Daily Check In
+                </a>
+
+                <a
+                    href="members.html"
+                    class="member-nav-link"
+                >
+                    Members
+                </a>
+
+                <a
+                    href="admin-report.html"
+                    class="member-nav-link"
+                >
+                    Reports
+                </a>
+
+                <a
+                    href="admin-tasks.html"
+                    class="member-nav-link"
+                >
+                    Tasks
+                </a>
+
+                <button
+                    id="logout-button"
+                    type="button"
+                    class="header-signout"
+                >
+                    Sign Out
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="admin-console-main">
+
+        <div class="container">
+
+
+            <section class="admin-console-hero">
+
+                <p class="dashboard-eyebrow">
+                    Admin
+                </p>
+
+                <h1>
+                    Admin Console
+                </h1>
+
+                <p>
+                    Manage membership, onboarding and
+                    accountability from one place.
+                </p>
+
+            </section>
+
+
+            <section class="admin-stat-grid">
+
+                <article class="admin-stat-card">
+                    <span>Pending Requests</span>
+                    <strong id="pending-count">—</strong>
+                </article>
+
+                <article class="admin-stat-card">
+                    <span>Active Members</span>
+                    <strong id="active-count">—</strong>
+                </article>
+
+                <article class="admin-stat-card">
+                    <span>Administrators</span>
+                    <strong id="admin-count">—</strong>
+                </article>
+
+                <article class="admin-stat-card">
+                    <span>Disabled</span>
+                    <strong id="disabled-count">—</strong>
+                </article>
+
+            </section>
+
+
+            <div
+                id="admin-message"
+                class="admin-message"
+                hidden
+            ></div>
+
+
+            <section class="membership-section">
+
+                <div class="membership-section-heading">
+
+                    <div>
+
+                        <p class="dashboard-eyebrow">
+                            Membership
+                        </p>
+
+                        <h2>
+                            Pending Applications
+                        </h2>
+
+                        <p>
+                            Review each applicant's onboarding
+                            responses before approving or rejecting.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="requests-container"
+                    class="requests-list"
+                >
+                    <div class="admin-empty">
+                        Loading applications...
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section class="admin-quick-actions">
+
+                <a
+                    href="members.html"
+                    class="admin-action-card"
+                >
+                    <span>Members</span>
+                    <strong>Manage community →</strong>
+                </a>
+
+
+                <a
+                    href="admin-report.html"
+                    class="admin-action-card"
+                >
+                    <span>Accountability</span>
+                    <strong>Open daily reports →</strong>
+                </a>
+
+
+                <a
+                    href="admin-tasks.html"
+                    class="admin-action-card"
+                >
+                    <span>Tasks</span>
+                    <strong>Manage task framework →</strong>
+                </a>
+
+
+                <a
+                    href="admin-questionnaire.html"
+                    class="admin-action-card"
+                >
+                    <span>Onboarding</span>
+                    <strong>Edit questionnaire →</strong>
+                </a>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/admin.js"
+    ></script>
+
+</body>
+
+</html>

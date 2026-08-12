@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Login | The Unleash Tribe</title>
+
+    <meta
+        name="description"
+        content="Sign in to The Unleash Tribe Daily Check In."
+    >
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+
+</head>
+
+
+<body class="auth-page">
+
+    <header class="auth-header">
+
+        <div class="container auth-header-inner">
+
+            <a
+                href="index.html"
+                class="auth-brand"
+                aria-label="The Unleash Tribe home"
+            >
+
+                <span class="auth-brand-symbol">
+                    UT
+                </span>
+
+                <span>
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Daily Check In
+                    </small>
+
+                </span>
+
+            </a>
+
+            <a
+                href="index.html"
+                class="auth-home-link"
+            >
+                Back to home
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="auth-main">
+
+        <section
+            class="auth-card"
+            aria-labelledby="login-title"
+        >
+
+            <p class="auth-eyebrow">
+                Member Access
+            </p>
+
+            <h1 id="login-title">
+                Welcome back.
+            </h1>
+
+            <p class="auth-intro">
+                Sign in to continue your Daily Check In.
+            </p>
+
+
+            <div
+                id="auth-message"
+                class="auth-message"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+
+            <form id="login-form" novalidate>
+
+                <div class="form-field">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-form-meta">
+
+                    <a href="forgot-password.html">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    id="login-button"
+                    type="submit"
+                    class="auth-submit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>New here?</span>
+            </div>
+
+            <p class="auth-footer-copy">
+                Membership requires approval from The Unleash Tribe.
+            </p>
+
+            <a
+                href="request-access.html"
+                class="auth-secondary-action"
+            >
+                Request Access
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/auth/auth.js"
+    ></script>
+
+</body>
+
+</html>

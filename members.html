@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Members | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/members.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="admin.html"
+                class="member-brand"
+            >
+
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+
+                    <strong>
+                        The Unleash Tribe
+                    </strong>
+
+                    <small>
+                        Admin
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="member-header-actions">
+
+                <a
+                    href="admin.html"
+                    class="member-nav-link"
+                >
+                    Admin Console
+                </a>
+
+                <a
+                    href="admin-report.html"
+                    class="member-nav-link"
+                >
+                    Reports
+                </a>
+
+                <a
+                    href="admin-tasks.html"
+                    class="member-nav-link"
+                >
+                    Task Manager
+                </a>
+
+                <button
+                    id="logout-button"
+                    class="header-signout"
+                    type="button"
+                >
+                    Sign Out
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="members-main">
+
+        <div class="container">
+
+            <section class="members-hero">
+
+                <p class="dashboard-eyebrow">
+                    Administration
+                </p>
+
+                <h1>
+                    Members
+                </h1>
+
+                <p>
+                    Manage member access and administrator roles.
+                </p>
+
+            </section>
+
+
+            <section class="member-stat-grid">
+
+                <article>
+                    <span>Active</span>
+                    <strong id="active-members">0</strong>
+                </article>
+
+                <article>
+                    <span>Admins</span>
+                    <strong id="admin-members">0</strong>
+                </article>
+
+                <article>
+                    <span>Disabled</span>
+                    <strong id="disabled-members">0</strong>
+                </article>
+
+                <article>
+                    <span>Total Profiles</span>
+                    <strong id="total-members">0</strong>
+                </article>
+
+            </section>
+
+
+            <div
+                id="members-message"
+                class="members-message"
+                hidden
+            ></div>
+
+
+            <section class="members-panel">
+
+                <div class="members-toolbar">
+
+                    <div>
+
+                        <h2>
+                            Community Members
+                        </h2>
+
+                        <p>
+                            Promote, demote, disable or restore accounts.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        id="member-search"
+                        type="search"
+                        placeholder="Search name, username or email"
+                        aria-label="Search members"
+                    >
+
+                </div>
+
+
+                <div
+                    id="members-list"
+                    class="members-list"
+                >
+                    Loading members...
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/members.js"
+    ></script>
+
+</body>
+
+</html>

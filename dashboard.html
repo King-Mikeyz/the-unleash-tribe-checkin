@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Daily Check In | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="dashboard.html"
+                class="member-brand"
+            >
+
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+                    <strong>The Unleash Tribe</strong>
+                    <small>Daily Check In</small>
+                </span>
+
+            </a>
+
+
+            <div class="member-header-actions">
+
+                <a
+                    id="admin-requests-link"
+                    href="admin.html"
+                    class="member-nav-link"
+                    hidden
+                >
+                    Requests
+                </a>
+
+                <a
+                    id="admin-tasks-link"
+                    href="admin-tasks.html"
+                    class="member-nav-link"
+                    hidden
+                >
+                    Task Manager
+                </a>
+
+                <button
+                    id="logout-button"
+                    class="header-signout"
+                    type="button"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="member-main">
+
+        <div class="container">
+
+
+            <section class="member-hero">
+
+                <div class="member-profile-row">
+
+                    <div
+                        id="member-avatar"
+                        class="member-avatar"
+                        aria-hidden="true"
+                    >
+                        M
+                    </div>
+
+
+                    <div>
+
+                        <p class="dashboard-eyebrow">
+                            Today's Accountability
+                        </p>
+
+                        <h1>
+                            Welcome,
+                            <span id="member-name">
+                                Member
+                            </span>.
+                        </h1>
+
+                        <p
+                            id="accountability-date"
+                            class="member-date"
+                        >
+                            Loading today's check-in...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="streak-card">
+
+                    <span
+                        class="streak-flame"
+                        aria-hidden="true"
+                    >
+                        🔥
+                    </span>
+
+                    <div>
+
+                        <strong id="streak-count">
+                            0
+                        </strong>
+
+                        <span>
+                            day streak
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section
+                id="window-status"
+                class="window-status"
+                hidden
+            ></section>
+
+
+            <section
+                id="progress-section"
+                class="progress-panel"
+                hidden
+            >
+
+                <div
+                    id="progress-ring"
+                    class="progress-ring"
+                    style="--progress: 0"
+                    aria-label="Daily completion progress"
+                >
+
+                    <div class="progress-ring-inner">
+
+                        <strong id="progress-percentage">
+                            0%
+                        </strong>
+
+                        <span>
+                            complete
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-copy">
+
+                    <p class="dashboard-eyebrow">
+                        Daily Completion
+                    </p>
+
+                    <h2 id="progress-count">
+                        0 / 7 completed
+                    </h2>
+
+                    <p>
+                        A parent task completes automatically
+                        only when every required child task
+                        inside it has been completed.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section
+                id="task-list"
+                class="task-grid"
+                aria-live="polite"
+            >
+
+                <div class="dashboard-loading">
+                    Loading today's tasks...
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/dashboard.js"
+    ></script>
+
+</body>
+
+</html>

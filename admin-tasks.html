@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Task Manager | The Unleash Tribe</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-tasks.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="member-header">
+
+        <div class="container member-header-inner">
+
+            <a
+                href="dashboard.html"
+                class="member-brand"
+            >
+
+                <span class="member-brand-mark">
+                    UT
+                </span>
+
+                <span class="member-brand-copy">
+                    <strong>The Unleash Tribe</strong>
+                    <small>Administration</small>
+                </span>
+
+            </a>
+
+
+            <div class="member-header-actions">
+
+                <a
+                    href="dashboard.html"
+                    class="member-nav-link"
+                >
+                    Daily Check In
+                </a>
+
+                <a
+                    href="admin.html"
+                    class="member-nav-link"
+                >
+                    Admin Console
+                </a>
+
+                <button
+                    id="logout-button"
+                    type="button"
+                    class="header-signout"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="admin-task-main">
+
+        <div class="container">
+
+
+            <section class="admin-task-hero">
+
+                <p class="dashboard-eyebrow">
+                    Administration
+                </p>
+
+                <h1>
+                    Task Manager
+                </h1>
+
+                <p>
+                    Create parent tasks, add child tasks,
+                    schedule temporary programs and control
+                    the accountability window without
+                    changing application code.
+                </p>
+
+            </section>
+
+
+            <div
+                id="admin-task-message"
+                class="admin-task-message"
+                hidden
+            ></div>
+
+
+            <section class="admin-settings-card">
+
+                <div>
+
+                    <p class="dashboard-eyebrow">
+                        Accountability Window
+                    </p>
+
+                    <h2>
+                        Daily schedule
+                    </h2>
+
+                </div>
+
+
+                <form
+                    id="settings-form"
+                    class="settings-form"
+                >
+
+                    <label>
+                        Community timezone
+
+                        <input
+                            id="timezone-input"
+                            type="text"
+                            placeholder="Africa/Lagos"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Opens
+
+                        <input
+                            id="open-time-input"
+                            type="time"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Closes
+
+                        <input
+                            id="close-time-input"
+                            type="time"
+                            required
+                        >
+                    </label>
+
+
+                    <button type="submit">
+                        Save Schedule
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <section class="admin-builder-grid">
+
+
+                <form
+                    id="parent-form"
+                    class="builder-card"
+                >
+
+                    <p class="dashboard-eyebrow">
+                        New Parent
+                    </p>
+
+                    <h2>
+                        Add parent task
+                    </h2>
+
+
+                    <label>
+                        Name
+
+                        <input
+                            id="parent-name"
+                            type="text"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Description
+
+                        <textarea
+                            id="parent-description"
+                            rows="3"
+                        ></textarea>
+                    </label>
+
+
+                    <div class="date-row">
+
+                        <label>
+                            Start date
+
+                            <input
+                                id="parent-start"
+                                type="date"
+                            >
+                        </label>
+
+
+                        <label>
+                            End date
+
+                            <input
+                                id="parent-end"
+                                type="date"
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <label class="check-row">
+
+                        <input
+                            id="parent-required"
+                            type="checkbox"
+                            checked
+                        >
+
+                        Required for daily completion
+
+                    </label>
+
+
+                    <button type="submit">
+                        Create Parent Task
+                    </button>
+
+                </form>
+
+
+                <form
+                    id="child-form"
+                    class="builder-card"
+                >
+
+                    <p class="dashboard-eyebrow">
+                        New Child
+                    </p>
+
+                    <h2>
+                        Add child task
+                    </h2>
+
+
+                    <label>
+                        Parent task
+
+                        <select
+                            id="child-parent"
+                            required
+                        ></select>
+                    </label>
+
+
+                    <label>
+                        Task label
+
+                        <input
+                            id="child-label"
+                            type="text"
+                            required
+                        >
+                    </label>
+
+
+                    <div class="date-row">
+
+                        <label>
+                            Start date
+
+                            <input
+                                id="child-start"
+                                type="date"
+                            >
+                        </label>
+
+
+                        <label>
+                            End date
+
+                            <input
+                                id="child-end"
+                                type="date"
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <label class="check-row">
+
+                        <input
+                            id="child-required"
+                            type="checkbox"
+                            checked
+                        >
+
+                        Required for parent completion
+
+                    </label>
+
+
+                    <button type="submit">
+                        Add Child Task
+                    </button>
+
+                </form>
+
+
+            </section>
+
+
+            <section class="task-library-section">
+
+                <div class="task-library-heading">
+
+                    <div>
+
+                        <p class="dashboard-eyebrow">
+                            Current Framework
+                        </p>
+
+                        <h2>
+                            Parent and child tasks
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="refresh-tasks"
+                        type="button"
+                        class="secondary-admin-button"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="admin-task-list"
+                    class="admin-task-list"
+                >
+                    Loading tasks...
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="js/pages/admin-tasks.js"
+    ></script>
+
+</body>
+
+</html>
+
