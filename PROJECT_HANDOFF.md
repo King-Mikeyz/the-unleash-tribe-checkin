@@ -1,127 +1,201 @@
-﻿# THE UNLEASH TRIBE — PROJECT HANDOFF
+# THE UNLEASH TRIBE — PROJECT HANDOFF
 
-Last updated: 12 August 2026
+**Last updated:** 14 August 2026  
+**Repository:** https://github.com/King-Mikeyz/the-unleash-tribe-checkin  
+**Current development target:** V1.0  
+**Status:** ACTIVE DEVELOPMENT — CORE ENGINE MUCH STRONGER, FINAL V1 NOT YET COMPLETE
 
-Repository:
-https://github.com/King-Mikeyz/the-unleash-tribe-checkin
+---
 
-Current development target:
-V1.0
+# 0. READ THIS FIRST — NEXT SESSION MUST START HERE
 
-Status:
-ACTIVE DEVELOPMENT — NOT PRODUCTION READY
+This file is the source of truth for the next session.
 
+The previous work was done inside a temporary ChatGPT conversation. Do **not** rely on chat history. Read this file completely, inspect the repository, and continue from the exact stopping point documented below.
 
-# 1. DEVELOPMENT WORKING AGREEMENT
+## Exact stopping point
 
-The assistant working on this repository must act as:
+The last confirmed completed item was:
+
+- disabled-account / restore flow was re-tested and confirmed working after fixing stale/shared-browser-session behavior.
+
+The next work **must resume with this three-task engine batch**:
+
+1. **Forgot password + reset password flow**
+2. **Resend invitation capability**
+3. **Profile / identity foundation**
+
+Do not start with animation, landing-page redesign, admin visual polish, or general refactoring before this batch is complete.
+
+The working style requested by the product owner is to handle **three related tasks in parallel per batch**, then test all three and fix any errors together.
+
+---
+
+# 1. REQUIRED ASSISTANT PERSONA / ROLE
+
+The assistant working on this repository must act simultaneously as:
 
 - Senior Full-Stack Software Engineer
 - Senior Backend Engineer
+- Supabase/PostgreSQL Engineer
 - Senior QA Engineer
 - Security-minded reviewer
 - Senior Product Designer
 - Senior UI/UX Designer
-- Very critical reviewer
+- Mobile-first product reviewer
+- Critical technical reviewer
+- Release / submission-minded engineer
 
-Do not simply agree with product ideas.
+Do not simply agree with every idea.
 
-Question poor architectural, security or UX decisions and explain better alternatives.
+If a proposed design, architecture, animation, security model, workflow, or implementation would weaken the product, create unnecessary complexity, harm mobile performance, or delay V1, call it out and recommend a better option.
 
-The target is a reliable V1 product, not merely pages that render.
+The target is a reliable product, not merely pages that render.
 
+The assistant should always distinguish between:
 
-## User implementation workflow
+- engine / backend correctness
+- authentication and authorization
+- data-model integrity
+- security
+- UI polish
+- interaction design
+- nice-to-have animation
+- V1 blockers
+- V1.1 backlog
 
-The user is implementing the code locally.
+---
 
-Do NOT assume the user knows where commands belong.
+# 2. NON-NEGOTIABLE USER IMPLEMENTATION WORKFLOW
 
-Whenever giving a command, explicitly state whether it must be run in:
+The product owner does **not** want to edit individual lines of code manually.
+
+## Existing-file rule
+
+If an EXISTING file must change:
+
+- give the exact file path
+- provide the **entire replacement file**
+- do not say “change line 47”
+- do not give isolated snippets unless they are only diagnostic SQL or a terminal command
+- do not ask the user to hunt for an existing code block
+
+## New-file rule
+
+If a NEW file or folder must be created:
+
+1. provide the exact **VS Code PowerShell** command to create it
+2. provide the full contents after creation
+
+## Command-location rule
+
+Every command must explicitly say where to run it:
 
 - VS Code PowerShell terminal
-- Windows Command Prompt
 - Supabase SQL Editor
 - Supabase Dashboard
 - Browser DevTools
+- Windows Command Prompt, if ever required
 
-### File editing rule
+Do not assume the product owner knows which environment a command belongs to.
 
-If an EXISTING HTML/CSS/JS/etc file must be replaced:
+## Three-task batch rule
 
-- provide the COMPLETE replacement file
-- state the exact file path
-- do not ask the user to hunt for individual lines
+The product owner requested that work continue in **three-task batches** where practical.
 
-If a NEW file/folder must be created:
+Preferred pattern:
 
-- give the exact VS Code PowerShell command to create it
-- then provide its complete contents
+- Task 1
+- Task 2
+- Task 3
+- test all three
+- collect errors
+- fix together
+- proceed to next three
 
-Supabase migrations may continue using the migration + SQL Editor workflow.
+---
 
+# 3. PRODUCT PURPOSE
 
-# 2. PRODUCT PURPOSE
+The Unleash Tribe Daily Check In is a Christian accountability/community platform intended to replace manual WhatsApp daily task check-ins.
 
-The Unleash Tribe Daily Check In is a Christian accountability platform intended to replace manual WhatsApp daily task check-ins.
-
-Core objectives:
+Core goals include:
 
 - membership application
-- admin approval
-- secure account creation
+- admin review and approval
+- secure invited account creation
+- username-based member login
 - daily accountability
-- dynamic tasks
-- task completion tracking
-- streak tracking
-- accountability reporting
+- dynamic parent/child tasks
+- daily completion tracking
+- progress tracking
+- streaks
+- history
+- reporting
 - member administration
+- onboarding questionnaire
+- secure admin operations
 - historical records
+- mobile-first usability
 
+The system is not supposed to behave like a generic template or AI-generated dashboard.
 
-# 3. ACCOUNTABILITY RULE
+The product owner wants it to feel:
 
-The fundamental task rule MUST NOT be changed.
+- premium
+- intentional
+- warm
+- modern
+- Christian/community-oriented
+- highly responsive
+- polished on mobile
+- visually refined without becoming gimmicky
 
-Tasks use a parent → child model.
+---
+
+# 4. FUNDAMENTAL ACCOUNTABILITY RULE — DO NOT CHANGE
+
+Tasks follow a **parent → child** model.
 
 Example:
 
-Fellowship with the Holy Spirit
+## Fellowship with the Holy Spirit
 
 - Worship
 - Prayer
 - Bible Reading
 - Listen to a Sermon
 
-A parent task cannot be manually marked complete.
+A parent task cannot be manually checked off.
 
-A parent becomes complete ONLY when every REQUIRED child task under it is complete.
+A parent becomes complete only when **every REQUIRED child task under that parent is complete**.
 
 Example:
 
-3 / 4 children complete
-= parent NOT DONE
+- 3 / 4 required children complete → parent = NOT DONE
+- 4 / 4 required children complete → parent = DONE
 
-4 / 4 children complete
-= parent DONE
+This rule must remain enforced by the backend/database logic and not merely by frontend display state.
 
+Historical task records must not be destroyed when tasks are archived.
 
-# 4. DEFAULT SEVEN DAILY AREAS
+---
 
-1. Fellowship with the Holy Spirit
+# 5. DEFAULT SEVEN DAILY AREAS
+
+1. **Fellowship with the Holy Spirit**
    - Worship
    - Prayer
    - Bible Reading
    - Listen to a Sermon
 
-2. Scripture
+2. **Scripture**
    - Proverbs Chapter of the Day
 
-3. Monthly Goal Progress
+3. **Monthly Goal Progress**
    - Work on monthly goal
 
-4. Financial Living
+4. **Financial Living**
    - Save
    - Avoid Debt
    - Earn
@@ -129,644 +203,1182 @@ Example:
    - Budget
    - Stay Within Budget
 
-5. Health & Wellness
+5. **Health & Wellness**
    - Exercise
    - Water
    - Rest
    - Avoid Carbonated Drinks
 
-6. Personal Growth
+6. **Personal Growth**
    - Learn
    - Read
    - Listen
    - Improve
 
-7. Holy Spirit Journaling
+7. **Holy Spirit Journaling**
    - Write to the Holy Spirit
 
+Tasks must remain database-driven/dynamic rather than hard-coded into UI files.
 
-# 5. DYNAMIC TASK REQUIREMENT
+---
 
-Tasks MUST NOT be hard-coded into the application.
-
-Admins must eventually be able to:
-
-- create parent tasks
-- create child tasks
-- archive tasks
-- mark tasks required/optional
-- schedule start dates
-- schedule end dates
-- create temporary programs
-
-Examples:
-
-- 31 Days of Scriptural Declaration
-- Seven Days of Fasting
-- temporary community challenges
-
-Historical task records must NEVER be destroyed when an admin removes a task.
-
-
-# 6. ACCOUNTABILITY TIMEZONE AND WINDOW
+# 6. ACCOUNTABILITY TIMEZONE / WINDOW
 
 Community timezone:
 
-Africa/Lagos
-
-Nigeria uses West Africa Time:
-
-UTC/GMT +1
-
-No daylight-saving change.
+- `Africa/Lagos`
+- UTC/GMT +1
+- no daylight-saving change
 
 Daily accountability window:
 
-Opens:
-10:00 AM Africa/Lagos
-
-Closes:
-6:00 AM Africa/Lagos the NEXT day
+- opens: **10:00 AM Africa/Lagos**
+- closes: **6:00 AM Africa/Lagos the next day**
 
 Example:
 
-12 August 10:00 AM
-through
-13 August 6:00 AM
+- 12 Aug, 10:00 AM → 13 Aug, 6:00 AM
+- belongs to accountability date: **12 Aug**
 
-belongs to accountability date:
+A completion at 2:00 AM on 13 Aug still belongs to 12 Aug.
 
-12 August
+This logic must be preserved and fully QA-tested before final V1.
 
-Anything completed at 2:00 AM on 13 August belongs to the 12 August accountability day.
+---
 
+# 7. LATEST SESSION SUMMARY — 14 AUGUST 2026
 
-# 7. FEATURES CURRENTLY WORKING
+The previous handoff and PRD were reviewed first and used as the source of truth.
 
-The following have been implemented and tested to some degree:
+The assistant explicitly adopted the senior engineering / QA / security / product / UI role defined by the project.
 
-## Landing
+The product owner added these workflow requirements:
 
-- index.html redesign
-- purple/gold visual identity
-- Member Login
-- Request Access
-- task preview
-- seven growth areas
-- responsive foundation
+- no single-line manual edits
+- complete-file replacements
+- exact PowerShell creation commands for new files
+- critical review instead of automatic agreement
+- engine correctness before visual excess
+- three-task development batches
 
-Leadership image is still missing.
+---
 
+# 8. UI/UX RESEARCH AND LOCKED DESIGN DIRECTION
 
-## Supabase foundation
+Research was performed around:
 
-Database includes work around:
+- Dribbble animated login designs
+- CodePen login interactions
+- CodeMyUI login collections
+- CodingNepal sliding panels / glowing input work
+- Awwwards CSS/JS/motion references
+- supplied Instagram reel:
+  - https://www.instagram.com/reel/Db7fSM1v8Yg/?igsh=MXR1OXZzaDVpZGExMg==
 
-- profiles
-- access_requests
-- app_settings
-- growth_areas
-- checklist_items
-- daily_checkins
-- checkin_responses
-- admin_audit_log
-- profile status history
-- onboarding questionnaire versions/questions/answers
+Key conclusion:
 
+> Premium UI does not mean everything should move.
 
-## Authentication
+The chosen direction is:
 
-Working for existing accounts:
+- one recognizable signature motion idea
+- restrained microinteractions
+- strong typography/layout
+- premium spacing
+- clean mobile-first behavior
+- good performance
+- no unnecessary WebGL/canvas/3D overload
 
-- Supabase connection
-- email/password authentication
-- session persistence
-- protected dashboard
-- active-member checks
-- admin checks
-- logout
+## Chosen concept A — “The Reveal”
 
+Signature blade / curtain authentication transition.
 
-## Identity
+Concept:
 
-Profiles currently support:
+- visitor arrives at login
+- purple/gold visual layer introduces/reveals the form
+- successful login triggers a quick blade/wipe across viewport
+- dashboard appears behind it
+- target transition is short, roughly 500–700ms
+- do not use theatrical page transitions everywhere
 
-- full_name
+## Chosen concept B — “Welcome Home”
+
+Split-screen editorial authentication layout.
+
+Desktop:
+
+- community/brand visual side
+- authentication side
+
+Mobile:
+
+- not a shrunken desktop layout
+- image may become a wide crop, compact portrait, or smaller visual
+- form becomes primary
+- mobile composition must be intentionally designed
+
+## Chosen concept C — “Living Light”
+
+Soft ambient background motion using:
+
+- CSS gradients
+- pseudo-elements
+- transform / opacity
+- restrained lavender/purple glow
+- tiny gold highlights
+
+Do not use a heavy canvas engine by default.
+
+## Chosen concept D — “Journey”
+
+Long onboarding should eventually feel guided, not like one giant database form.
+
+Potential direction:
+
+- section/stage progression
+- progress indicator
+- cleaner transitions
+- better validation
+- mobile-friendly controls
+- possible autosave/state-resume later
+
+## Chosen concept E — “Calm Progress”
+
+Use microanimation to explain product state:
+
+- child completion feedback
+- parent transition when all required children complete
+- progress response
+- restrained streak motion
+
+Do not make the product feel gamified or childish.
+
+## Optional concept F — “The Companion”
+
+Possible future elegant brand character.
+
+Must remain subtle and brand-appropriate.
+
+Avoid a childish cartoon/yeti feel.
+
+## Explicit rejection — “Awwwards everywhere”
+
+Do not combine:
+
+- WebGL
+- particles
+- canvas
+- 3D objects
+- parallax
+- mascot
+- glowing everything
+- elaborate navigation transitions
+
+all at once.
+
+That would damage usability, performance, and delivery speed.
+
+---
+
+# 9. BRAND / VISUAL DIRECTION
+
+Keep the purple/gold identity.
+
+Recommended balance:
+
+- ~75% white / warm neutral
+- ~20% purple / lavender
+- ~5% gold
+
+Gold should feel special rather than being used everywhere.
+
+Supporting colors may include:
+
+- pale lavender
+- warm ivory
+- ink / dark plum
+- subtle gray-violet
+
+---
+
+# 10. MOBILE-FIRST RULE
+
+Do not think:
+
+> desktop → shrink → mobile
+
+Think:
+
+> same product → intentionally different composition per available space
+
+Examples:
+
+- desktop hero may use a square/near-square image
+- mobile may use a wide crop or smaller portrait
+- image aspect ratio may change by breakpoint
+- use `object-fit`, `object-position`, responsive sizing, or separate sources when useful
+- buttons and fields must remain touch-friendly
+- navigation must feel like an intentional mobile interface
+
+Mobile is expected to be a primary access mode for community members.
+
+---
+
+# 11. REQUEST ACCESS / ONBOARDING FIXES COMPLETED
+
+The product owner supplied screenshots showing:
+
+- malformed text such as `3â€“5`
+- malformed ranges such as `1â€“10`
+- bad native select-arrow placement
+- unnecessary helper paragraphs
+- unnecessary pre-submit email invitation explanation
+- long / template-like form rhythm
+
+The design decision:
+
+- keep the architecture for optional `help_text`
+- remove only unnecessary current help text
+- preserve the feature for genuinely useful guidance
+
+## Migration
+
+### `supabase/migrations/20260813171500_fix_onboarding_copy.sql`
+
+Created/prepared to:
+
+- correct `3–5`
+- correct `1–10`
+- correct `5:30–6:00`
+- correct Bible-plan range text
+- remove unnecessary help text for selected question keys
+
+## `request-access.html`
+
+Replaced with cleaner markup.
+
+Changes included:
+
+- removed hard-coded invitation explanation under email
+- simplified privacy copy
+- preserved JS-required IDs
+- cleaner hierarchy
+
+## `css/onboarding.css`
+
+Replaced.
+
+Changes included:
+
+- custom select chevron
+- better select padding
+- improved focus states
+- tighter section spacing
+- compact scale controls
+- 5×2 scale on mobile
+- improved responsive behavior
+- reduced-motion support
+- more deliberate border/shadow treatment
+
+The product owner said this pass was acceptable and moved on.
+
+---
+
+# 12. AMBIGUOUS `version_number` SQL BUG
+
+Original critical bug:
+
+`admin_get_application_answers()` produced:
+
+> column reference "version_number" is ambiguous
+
+Cause:
+
+A local PL/pgSQL variable named `version_number` collided with a table column named `version_number`.
+
+A corrective migration was prepared:
+
+### `supabase/migrations/20260813170000_fix_admin_application_answers.sql`
+
+Approach:
+
+- rename local variable to `questionnaire_version_number`
+- fully qualify table columns
+- preserve the RPC response shape
+
+**NEXT SESSION VERIFICATION REQUIRED:**  
+Inspect git history, migration state, hosted function definition, and browser application review to confirm this is fully applied in the final current checkout and hosted Supabase database.
+
+Do not treat “drafted” as the same thing as “verified in hosted state.”
+
+---
+
+# 13. INVITATION EDGE FUNCTION / AUTH REDIRECT — WORKING
+
+Existing function preserved:
+
+### `supabase/functions/invite-approved-member/index.ts`
+
+It was explicitly **not deleted**.
+
+Architecture reviewed:
+
+- Deno Edge Function
+- Supabase JS
+- authenticated caller validation
+- active-admin validation
+- server-side service-role client
+- Supabase Auth invitation
+- redirect to `setup-account.html`
+
+The Supabase CLI was used to:
+
+- log in
+- link project
+- set `APP_SITE_URL`
+- deploy function
+
+The product owner confirmed the invitation flow worked.
+
+Local redirect testing was configured around:
+
+- `http://127.0.0.1:5500`
+- `setup-account.html`
+
+Final production redirect configuration still needs production QA before release.
+
+---
+
+# 14. DENO / VS CODE TOOLING FIXES
+
+VS Code initially showed TypeScript/Deno errors around Edge Functions.
+
+Files/configuration were added/fixed:
+
+## `.vscode/settings.json`
+
+Deno enabled only for:
+
+- `./supabase/functions`
+
+Important correction:
+
+Do **not** set:
+
+```json
+"deno.importMap": "./supabase/functions/deno.json"
+```
+
+for a real Deno config.
+
+That caused VS Code to interpret the file as a pure import map and reject top-level keys.
+
+Use:
+
+```json
+"deno.config": "./supabase/functions/deno.json"
+```
+
+## `supabase/functions/deno.json`
+
+Configured for Deno/npm dependency handling.
+
+The product owner ultimately succeeded in checking/deploying the new function.
+
+---
+
+# 15. USERNAME IDENTITY MODEL IMPLEMENTED
+
+Migration:
+
+### `supabase/migrations/20260813180000_username_identity_model.sql`
+
+Goals:
+
+- human-readable usernames
+- spaces allowed
+- normalized whitespace
+- case-insensitive uniqueness
+- normalized lookup representation
+- no public username→email mapping
+
+Example:
+
+Display:
+
+- `King Michael`
+
+Normalized lookup:
+
+- `king michael`
+
+Expected username rule:
+
+- 3–30 characters
+- letters
+- numbers
+- spaces
+- hyphens
+- underscores
+- starts/ends with a letter or number
+
+---
+
+# 16. SECURE USERNAME LOGIN EDGE FUNCTION — DEPLOYED
+
+Created:
+
+### `supabase/functions/username-login/index.ts`
+
+The product owner confirmed it was deployed.
+
+Security architecture:
+
+1. browser sends username + password
+2. Edge Function normalizes username
+3. trusted server-side service-role client resolves profile/Auth user
+4. email remains server-side
+5. Supabase Auth verifies password
+6. function returns session tokens
+7. browser calls `auth.setSession()`
+
+The browser must never receive a general username→email lookup capability.
+
+Inactive accounts are rejected.
+
+---
+
+# 17. ACCOUNT SETUP UPDATED — WORKING
+
+Files replaced:
+
+## `setup-account.html`
+
+New flow:
+
+- invited email shown read-only
 - username
+- password
+- confirm password
+- complete account setup
+
+## `js/pages/setup-account.js`
+
+Behavior:
+
+- detects invite session
+- validates username
+- validates password
+- validates password confirmation
+- updates profile username
+- sets permanent Auth password
+- stores username in Auth metadata as a convenience copy
+- signs out invitation session locally
+- redirects to login
+
+The product owner confirmed the setup flow worked.
+
+---
+
+# 18. LOGIN UPDATED TO USERNAME + PASSWORD — WORKING
+
+Files replaced:
+
+## `login.html`
+
+Now asks for:
+
+- Username
+- Password
+
+## `js/auth/auth.js`
+
+Behavior:
+
+- invokes `username-login`
+- receives access/refresh token
+- calls Supabase `auth.setSession()`
+- loads profile
+- requires active status
+- redirects to dashboard
+- uses generic invalid credential messaging
+- does not reveal username existence
+- supports reason messages for setup/session/inactive/logout
+
+The product owner tested:
+
+- correct username/password
+- wrong password
+- fresh approved account
+- username with spaces
+
+and reported all working.
+
+---
+
+# 19. DASHBOARD IDENTITY FIX IMPLEMENTED
+
+Problem:
+
+- full name: `Love King`
+- username: `Lovely`
+- old dashboard showed `Welcome, Love.`
+
+`js/pages/dashboard.js` was replaced so display identity now prefers:
+
+1. `profile.username`
+2. `profile.full_name`
+3. `Member`
+
+Avatar initials derive from the same display identity.
+
+**Next session:** perform one quick browser verification after restart to confirm latest checkout displays the full chosen username.
+
+---
+
+# 20. SHARED CHROME SESSION / STALE ADMIN PAGE BUG — UNDERSTOOD AND FIXED
+
+During disable/restore QA:
+
+- Michael admin and Emmanuel member were opened in multiple normal Chrome windows under the same Chrome profile
+- Supabase `persistSession: true` meant both windows shared one browser-storage session
+- logging into Emmanuel replaced the stored identity used by the origin
+- the already-open Michael admin page could remain visually stale
+- disabling Emmanuel then disabled the currently shared session
+- Restore appeared broken because the browser was no longer truly authenticated as Michael
+
+This was not primarily a Restore-RPC bug.
+
+## Correct simultaneous-account QA
+
+Use isolated browser storage:
+
+- Chrome normal = Michael admin
+- Chrome Incognito = Emmanuel member
+
+or:
+
+- Chrome = Michael
+- Edge = Emmanuel
+
+or separate Chrome profiles.
+
+Do not use two normal windows in the same Chrome profile and expect isolated Supabase sessions.
+
+---
+
+# 21. SESSION GUARD HARDENING — CONFIRMED
+
+File replaced:
+
+### `js/auth/guards.js`
+
+New behavior:
+
+- uses server-confirmed `auth.getUser()` for protected identity
+- loads profile
+- rejects inactive users
+- uses local sign-out when appropriate
+- installs `onAuthStateChange()` protection
+- rechecks stored identity when window regains focus
+- reloads/revalidates if another tab changes the account underneath the page
+- prevents stale admin UI from remaining trusted after account switching
+
+The product owner re-tested with proper browser isolation and confirmed:
+
+> disable restore fixed
+
+This is the latest confirmed completed milestone.
+
+---
+
+# 22. DISABLE / RESTORE SECURITY EXPECTATION
+
+Must remain true:
+
+- active admin can disable member
+- disabled member cannot continue protected operations
+- disabled member is rejected on refresh/login
+- admin can restore member
+- restored member can sign in again
+- last active admin remains protected
+- backend authorization remains authoritative
+
+Hiding buttons alone is never enough.
+
+---
+
+# 23. PARENT / CHILD ENGINE STATUS
+
+Existing task engine already supports:
+
+- dynamic parents
+- dynamic children
+- required/optional children
+- parent completion from child state
+- overall completion
+- percentage
+- persistence
+- Africa/Lagos accountability window
+- admin task-manager foundation
+
+Include a final regression test before V1 release:
+
+- 3/4 required children → Not Done
+- 4/4 → Done
+- refresh preserves state
+- unchecking a required child reverts parent to Not Done
+- overall completed-parent count updates correctly
+
+---
+
+# 24. UI ISSUES LOGGED FOR FINAL POLISH
+
+These were explicitly requested by the product owner and must not be forgotten.
+
+## Members alignment
+
+Current role/status/action controls do not align cleanly between rows.
+
+Need:
+
+- real grid/column alignment
+- aligned Active chips
+- aligned role chips
+- aligned action buttons
+- professional table/card rhythm
+
+## Persistent admin shell
+
+Current admin pages visually change their header/navigation from page to page.
+
+Need:
+
+- one consistent admin shell
+- stable navigation
+- consistent page hierarchy
+- clear sense that all pages belong to the same admin dashboard
+
+## “Admin Control” wording
+
+“Admin Control” feels vague/cheap.
+
+Likely replacement:
+
+- `Admin Dashboard`
+
+or another deliberately chosen label during navigation redesign.
+
+## Admin vs Administration
+
+Preferred rule:
+
+- **Admin** for product/navigation labels
+- **Administrator** only where grammar requires it
+- perform one complete copy audit
+
+## Request Access form
+
+Already improved, but final UI QA should revisit:
+
+- spacing
+- mobile form rhythm
+- select controls
+- option alignment
+- long-form fatigue
+- post-submit state
+- premium consistency
+
+---
+
+# 25. EXACT NEXT SESSION — THREE TASKS
+
+## START HERE
+
+### TASK 1 — FORGOT PASSWORD + RESET PASSWORD
+
+Inspect current:
+
+- `forgot-password.html`
+- any reset-password implementation
+- auth JS
+- Supabase redirect settings
+- current username-login architecture
+
+Important product/security point:
+
+Login is username-based, but password-recovery delivery uses the member's account email.
+
+Need a safe recovery UX.
+
+Requirements:
+
+- neutral response to avoid account enumeration
+- recovery email
+- correct redirect
+- reset-password page/session detection
+- new password
+- confirm password
+- expired-link handling
+- successful reset → return to username login
+- mobile QA
+- production redirect QA
+
+Do **not** build an insecure username→email recovery lookup in the browser.
+
+### TASK 2 — RESEND INVITATION
+
+Admins need a safe resend capability for an approved applicant/member whose setup is incomplete.
+
+Inspect:
+
+- `invite-approved-member`
+- access request state
+- Auth-user state
+- Admin Applications UI
+
+Requirements:
+
+- admin-only
+- avoid accidental duplicate profile creation
+- handle existing Auth user safely
+- clear state/error messages
+- ideally audit action
+- only resend when it makes sense
+- test expired/unused invite cases
+
+### TASK 3 — PROFILE / IDENTITY FOUNDATION
+
+Build a proper V1 profile foundation.
+
+Likely data:
+
+- username
+- full name
 - email
 - role
 - status
+- joined date
 
+Need to decide:
 
-## Daily dashboard
+- what member can edit
+- what admin controls
+- whether username changes are allowed
+- safe column/RLS permissions
+- source of truth for display identity
+- profile page structure
 
-Working:
+Do not overbuild uploaded profile photos in V1 unless priority changes. Uploaded photos are a V1.1 item.
 
-- dynamic seven parent areas
-- child-task rendering
-- parent completion logic
-- overall /7 completion
-- percentage
-- initials avatar
-- streak display foundation
-- Africa/Lagos accountability window
+---
 
+# 26. REMAINING V1 ENGINE ORDER AFTER NEXT BATCH
 
-## Admin Task Manager
+## Batch 2
 
-Working:
+1. onboarding questionnaire editor QA
+2. application-review / rejection-reason QA
+3. privacy/data-minimization review
 
-- task listing
-- parent creation
-- child creation
-- start/end dates
-- required/optional support
-- task archival
-- timezone/window configuration
+## Batch 3
 
+1. members/admin-role QA
+2. audit-log viewer
+3. reporting/task-scheduling QA
 
-## Members
+## Batch 4
 
-Working foundation:
+1. member history refinements
+2. check-in closed-window / empty / error states
+3. streak / reporting verification
 
-- member listing
-- active/admin/disabled statistics
-- search
-- promote member to admin
-- demote admin
-- disable member
-- restore member
+Then do navigation/UI/mobile polish and final QA.
 
-Last-active-admin protection must continue to be enforced.
+---
 
+# 27. V1 FEATURE STATUS
 
-## History
+## Membership / Authentication
 
-Working foundation:
-
-- accountability history
-- Done
-- Incomplete
-- Not Started
-- percentages
-- historical entries
-
-
-## Admin reporting
-
-Working foundation:
-
-- Done members
-- Incomplete members
-- Not Started members
-- expected-member count
-- historical backfill
-
-
-# 8. ONBOARDING QUESTIONNAIRE
-
-The onboarding questionnaire has been implemented as a versioned dynamic system.
-
-Current categories include:
-
-1. Personal Information
-2. Marital Status & Occupation
-3. Spiritual Background
-4. Purpose & Intention
-5. Goals & Success
-6. Community & Service
-7. Personal Growth
-8. Commitment
-9. Bible Reading Plan
-
-Admins must ultimately be able to edit the questionnaire.
-
-Historical applicants must remain tied to the questionnaire version they answered.
-
-
-# 9. CURRENT CRITICAL BUGS — FIX THESE BEFORE ADDING MORE FEATURES
-
-NEXT SESSION MUST START HERE.
-
-
-## BUG 1 — SQL ambiguous version_number
-
-Admin application review currently produces:
-
-column reference "version_number" is ambiguous
-
-Location:
-
-admin_get_application_answers RPC / questionnaire database logic.
-
-Fix the PL/pgSQL variable/column collision by renaming the local variable and fully qualifying database columns.
-
-Do not patch blindly.
-
-Inspect the actual current migration/function first.
-
-
-## BUG 2 — Character encoding / mojibake
-
-The onboarding form displays text like:
-
-3â€“5
-
-instead of:
-
-3–5
-
-There may be other corrupted characters.
-
-Audit:
-
-- HTML
-- JS
-- SQL seeded questionnaire text
-- UTF-8 file encodings
-- database values
-
-Correct all affected text.
-
-Files must remain UTF-8.
-
-
-## BUG 3 — Edge Function is not finished
-
-File:
-
-supabase/functions/invite-approved-member/index.ts
-
-DO NOT DELETE THIS FILE.
-
-It contains valuable unfinished account-invitation work.
-
-VS Code currently reports TypeScript/Deno problems and the Supabase function deployment/configuration has not been completed successfully.
-
-Next session:
-
-- inspect the exact TypeScript diagnostics
-- confirm correct Supabase Edge Function runtime/import syntax
-- validate environment variables
-- validate authorization
-- deploy only after code review
-- test invitation end-to-end
-
-
-## BUG 4 — Supabase Dashboard URL Configuration error
-
-Supabase Authentication → URL Configuration showed:
-
-Failed to retrieve auth configuration
-
-Error:
-Lock broken by another request with the 'steal' option.
-
-This appears to be a Supabase Dashboard/config retrieval problem.
-
-The local redirect URL setup has NOT been considered verified.
-
-Retry after system/browser restart and verify against current Supabase documentation if necessary.
-
-
-## BUG 5 — Registration/account-setup UX is inconsistent
-
-Current design:
-
-Application:
-email + questionnaire
-
-Account setup:
-username + password + confirm password
-
-Login:
-email + password
-
-Product owner does NOT want this final experience.
-
-Desired V1 experience:
-
-ACCOUNT SETUP / REGISTRATION:
-
-- Email
-- Username
-- Password
-- Confirm Password
-
-Because the invitation already identifies the email, email may be securely prefilled/read-only during invited account setup.
-
-LOGIN:
-
-- Username
-- Password
-
-The underlying Supabase identity may continue using email internally.
-
-IMPORTANT:
-
-Do NOT implement insecure client-side username → email lookup.
-
-Design username login securely, probably using trusted server-side/Edge Function logic.
-
-
-## BUG 6 — Username rules
-
-Current username regex only allows:
-
-letters
-numbers
-underscores
-
-Product owner wants human-readable usernames such as:
-
-King Michael
-
-instead of requiring:
-
-King_Michael
-
-Before implementation, decide the correct architecture.
-
-Recommended direction to investigate:
-
-- allow human-readable display usernames with spaces
-- normalize whitespace
-- enforce case-insensitive uniqueness
-- preserve a secure normalized lookup representation
-
-Do not expose member email mappings publicly.
-
-
-## BUG 7 — Dashboard greeting uses wrong identity field
-
-Example applicant:
-
-Full name:
-Love King
-
-Chosen username:
-Lovely
-
-Dashboard currently displays:
-
-Welcome, Love.
-
-This happens because dashboard greeting uses the first word of full_name.
-
-Desired behavior:
-
-The dashboard should use the member's chosen username/display identity according to the final identity model.
-
-Do not truncate it to the first word unless that is explicitly the chosen product rule.
-
-
-## BUG 8 — Admin wording is inconsistent
-
-Some UI has been changed to:
-
-Admin
-
-but other hero/eyebrow sections still say:
-
-Administration
-
-Product owner wants consistent wording:
-
-Admin
-
-or where grammatically necessary:
-
-Administrator
-
-Perform a complete text audit later rather than fixing one occurrence at a time.
-
-
-## BUG 9 — UI/UX quality is currently below target
-
-The current application is functional but visually too heavy.
-
-Problems observed:
-
-- excessive bold typography
-- oversized headings
-- repetitive card styling
-- weak visual hierarchy
-- insufficient visual rhythm
-- admin UI feels utilitarian
-- onboarding form feels long and monotonous
-- insufficient premium/community personality
-- interactions are not yet polished enough
-
-Do NOT merely change font sizes randomly.
-
-Before the final V1 design pass, perform research into modern:
-
-- accountability platforms
-- habit tracking products
-- check-in systems
-- community dashboards
-- onboarding/questionnaire systems
-- admin dashboards
-
-Analyze:
-
-- navigation architecture
-- information hierarchy
-- daily check-in interaction
-- progress visualization
-- streak visualization
-- mobile behavior
-- long-form onboarding UX
-- admin reporting UX
-- empty states
-- error states
-- microinteractions
-
-Then redesign The Unleash Tribe in its own brand rather than copying another product.
-
-
-# 10. ACCOUNT / ADMIN MODEL
-
-Both Michael/project owner and the community leader should be able to be admins.
-
-Do NOT invent a superadmin role unless there is a genuine requirement.
-
-The platform must always retain at least one active admin.
-
-An admin must eventually be able to:
-
-- approve applications
-- reject applications
-- manage tasks
-- manage members
-- promote admins
-- demote admins
-- disable accounts
-- restore accounts
-- view reports
-- backfill historical accountability
-- edit onboarding questions
-- view audit history
-
-
-# 11. V1 REMAINING FEATURES
-
-After fixing the critical bugs:
-
-## Membership / authentication
-
-- finish approved-member invitation flow
-- username-based login
-- password setup
-- email verification/invitation
-- resend invitation
-- forgot password
-- reset password
-- profile page
-- consistent identity/display-name model
-
+- [x] approved-member invitation foundation
+- [x] invitation Edge Function deployed/tested
+- [x] invited account setup
+- [x] email read-only during setup
+- [x] human-readable username model
+- [x] username login
+- [x] secure server-side username resolution
+- [x] password setup / confirmation
+- [x] inactive-account rejection
+- [x] stale/shared-session hardening
+- [ ] forgot password
+- [ ] reset password
+- [ ] resend invitation
+- [ ] profile page
+- [ ] final identity/display QA
+- [ ] session-expiry QA
+- [ ] production redirect QA
+- [ ] recovery-flow security QA
 
 ## Onboarding
 
-- questionnaire editor QA
-- publish/draft QA
-- applicant response review
-- rejection reason
-- privacy/data-minimization review
-
+- [x] dynamic questionnaire foundation
+- [x] request-access visual cleanup
+- [x] custom select treatment
+- [x] unnecessary helper copy cleanup
+- [x] mojibake correction work
+- [ ] verify hosted data after restart
+- [ ] questionnaire editor QA
+- [ ] publish/draft QA
+- [ ] applicant response review QA
+- [ ] rejection reason
+- [ ] privacy/data-minimization review
+- [ ] guided premium long-form redesign
 
 ## Admin
 
-- improved navigation
-- audit-log viewer
-- members QA
-- reporting QA
-- task scheduling QA
-- application management QA
-
+- [x] applications foundation
+- [x] members foundation
+- [x] disable/restore foundation
+- [x] promote/demote foundation
+- [x] task manager foundation
+- [x] reporting foundation
+- [ ] persistent admin shell
+- [ ] replace vague “Admin Control”
+- [ ] Admin/Administration copy audit
+- [ ] member-row alignment polish
+- [ ] audit-log viewer
+- [ ] applications QA
+- [ ] members QA
+- [ ] reporting QA
+- [ ] task scheduling QA
+- [ ] last-active-admin regression QA
 
 ## Member
 
-- profile
-- history refinements
-- check-in refinements
-- closed-window state
-- empty states
-- error states
-
+- [x] dashboard foundation
+- [x] dynamic tasks
+- [x] progress
+- [x] username-display logic implemented
+- [ ] quick post-restart username display verification
+- [ ] profile
+- [ ] history refinements
+- [ ] closed-window refinement
+- [ ] empty/error states
+- [ ] final streak QA
 
 ## Landing
 
-- add Emmanuela/leader photograph supplied by product owner
-- verify content
-- mobile polish
+- [x] purple/gold brand foundation
+- [x] member login
+- [x] request access
+- [x] responsive base
+- [ ] leader / Emmanuela photo when supplied/approved
+- [ ] content audit
+- [ ] premium responsive composition
+- [ ] mobile polish
 
+---
 
-## Final V1 QA
+# 28. FINAL V1 UI PASS
 
-Test:
+After technical engines are stable, perform the serious UI/UX pass.
 
-- desktop
-- tablet
-- mobile
-- authentication
-- authorization
-- RLS
-- admin-only pages
-- member-only actions
-- username uniqueness
-- account setup
-- invitations
-- password recovery
-- session expiry
-- 10 AM opening
-- midnight crossover
-- 6 AM closure
-- parent completion
-- daily completion
-- streaks
-- temporary tasks
-- archived tasks
-- history
-- reporting
-- disabled accounts
-- last-admin protection
-- malformed inputs
-- network failures
-- console errors
-- accessibility basics
-- keyboard navigation
+Priority:
 
+1. consistent admin shell
+2. member dashboard hierarchy
+3. auth/login/setup polish
+4. request-access guided experience
+5. mobile composition
+6. table/member alignment
+7. error/loading/empty states
+8. accessibility
+9. microinteractions
+10. optional lightweight signature transition only if low-risk
 
-# 12. V1.1 BACKLOG
+The visual direction is already locked. Do not restart the design strategy from zero.
 
-Do not allow these to delay V1 unless priorities change:
+---
+
+# 29. V1 VS V1.1 ANIMATION BOUNDARY
+
+## Safe for V1 if low-risk
+
+- hover/focus refinement
+- loading/press feedback
+- child-task completion feedback
+- progress animation
+- soft CSS ambient background
+- restrained auth entrance
+- reduced-motion support
+- possibly a lightweight blade/reveal transition if schedule and stability allow
+
+## Expanded V1.1 motion
+
+- full blade/curtain auth choreography
+- richer login-to-dashboard transitions
+- optional elegant companion character
+- more elaborate onboarding motion
+- deeper dashboard microinteractions
+- expanded transition system
+- richer illustration/image choreography
+- advanced CSS/JS animation system
+- canvas/WebGL experimentation only if justified
+
+Animation must never become a dependency for basic use.
+
+---
+
+# 30. V1.1 BACKLOG
+
+Do not allow these to delay V1 unless priorities explicitly change:
 
 - uploaded profile photos
 - automated reminder engine
 - email reminders
 - web push notifications
 - PWA
+- offline-friendly improvements where appropriate
 - calendar integration
 - richer statistics
+- richer streak visualization
+- deeper historical analytics
 - advanced animation
+- full blade/curtain auth choreography
+- optional elegant brand companion
+- richer illustration system
 - deeper visual refinement
+- canvas/WebGL experiments only if performance allows
+- notification preferences
+- richer user settings
+- production email customization
+- advanced audit-history UX
+- advanced admin-report filters
+- onboarding autosave / step-resume if not completed in V1
+- extended accessibility refinement
+- broader automated tests
+- low-end Android performance profiling
 
+---
 
-# 13. NEXT SESSION START PROCEDURE
+# 31. FINAL V1 QA CHECKLIST
 
-Do NOT immediately start writing code.
+## Authentication
+
+- username login
+- wrong username
+- wrong password
+- generic non-enumerating errors
+- invited setup
+- invite expiry
+- resend invite
+- forgot password
+- reset password
+- inactive account
+- restored account
+- logout
+- refresh persistence
+- session expiry
+- cross-tab identity change
+- separate-browser testing
+- production redirect URLs
+
+## Authorization / Security
+
+- non-admin blocked from admin actions
+- admin RPCs enforce admin server-side
+- service-role key never exposed
+- username→email mapping never publicly exposed
+- inactive member blocked server-side
+- last active admin protected
+- RLS reviewed
+- malformed inputs
+- duplicate usernames
+- case-insensitive uniqueness
+- whitespace normalization
+- duplicate/expired invitations
+- expired recovery links
+
+## Daily Check In
+
+- 10 AM opening
+- midnight crossover
+- 6 AM closure
+- parent completion
+- optional children
+- required children
+- refresh persistence
+- overall /7
+- percentage
+- streaks
+- archived tasks
+- temporary tasks
+- history integrity
+
+## Admin
+
+- application review
+- approval
+- rejection
+- resend invitation
+- members search
+- disable/restore
+- promote/demote
+- last-admin protection
+- task creation
+- scheduling
+- archival
+- reporting
+- backfill
+- audit history
+- consistent navigation
+
+## Responsive / UI
+
+- desktop
+- tablet
+- Android widths
+- iPhone widths
+- no horizontal overflow
+- intentional image crops
+- usable mobile keyboard forms
+- focus states
+- keyboard navigation
+- error states
+- loading states
+- empty states
+- reduced motion
+- readable contrast
+
+## Developer QA
+
+- no console errors
+- no failing network calls
+- no secrets in frontend
+- no migration conflicts
+- Edge Functions deployed
+- production URLs configured
+- clean git status
+- current database state verified
+- handoff updated
+
+---
+
+# 32. NEXT-SESSION STARTUP PROCEDURE
+
+Do **not** immediately write code.
 
 First:
 
-1. Open repository.
-2. Read this PROJECT_HANDOFF.md completely.
-3. Read PRD.md.
-4. Run git status.
-5. Inspect git log.
-6. Inspect all migrations added during the last session.
-7. Inspect current HTML/CSS/JS files.
-8. Verify what is actually in the hosted Supabase database.
-9. Cross-check browser UI.
-10. Review console errors.
-11. Fix the current critical bugs before adding new features.
+1. open repository
+2. read this `PROJECT_HANDOFF.md` completely
+3. read `PRD.md`
+4. run `git status`
+5. run `git log --oneline -10`
+6. inspect migrations added during 14 Aug session
+7. inspect:
+   - `supabase/functions/invite-approved-member/index.ts`
+   - `supabase/functions/username-login/index.ts`
+   - `supabase/functions/deno.json`
+   - `.vscode/settings.json`
+   - `login.html`
+   - `setup-account.html`
+   - `request-access.html`
+   - `js/auth/auth.js`
+   - `js/auth/guards.js`
+   - `js/pages/setup-account.js`
+   - `js/pages/dashboard.js`
+   - `css/onboarding.css`
+8. confirm which migrations are actually committed
+9. confirm hosted Supabase migration/function state
+10. check browser console
+11. verify username login after restart
+12. verify dashboard chosen username
+13. verify invitation/redirect configuration
+14. start the exact three-task batch:
+   - forgot/reset password
+   - resend invitation
+   - profile/identity foundation
 
-Priority order:
+---
 
-1. Fix ambiguous version_number SQL error.
-2. Fix corrupted UTF-8 questionnaire characters.
-3. Inspect/fix Edge Function TypeScript issues.
-4. Verify Supabase auth redirect configuration.
-5. Redesign account identity flow:
-   registration/setup = email + username + password + confirm password
-   login = username + password
-6. Fix dashboard greeting identity.
-7. Complete invitation/account setup flow.
-8. Perform full navigation/wording audit.
-9. Continue remaining V1 functionality.
-10. Research competing/current check-in products.
-11. Perform serious UI/UX redesign/refinement.
-12. Run comprehensive QA/security review.
-13. Update this handoff again before ending the next session.
+# 33. IMPORTANT FILES — DO NOT DELETE
 
+- `PROJECT_HANDOFF.md`
+- `PRD.md`
+- `supabase/functions/invite-approved-member/index.ts`
+- `supabase/functions/username-login/index.ts`
+- `supabase/functions/deno.json`
+- `.vscode/settings.json`
+- current migrations
+- task-engine migrations
+- identity migrations
 
-# 14. IMPORTANT CURRENT FILE
+Especially preserve both Edge Functions unless a reviewed replacement is intentionally deployed.
 
-DO NOT DELETE:
+---
 
-supabase/functions/invite-approved-member/index.ts
+# 34. GIT / STOPPING RULE
 
-It is unfinished, not disposable.
+Before any major pause:
 
+1. save all files
+2. run `git status`
+3. inspect unexpected/untracked files
+4. commit intended progress
+5. push to GitHub
+6. update this handoff
 
-# 15. GIT / DOCUMENTATION RULE
+The project must not depend on temporary-chat history to understand its state.
 
-Before every major stopping point:
+---
 
-- Save all files.
-- Review git status.
-- Commit progress.
-- Push to GitHub.
-- Update PROJECT_HANDOFF.md.
+# 35. RECOMMENDED COMMIT MESSAGE
 
-The project must never again depend on temporary-chat history to understand its current state.
+Suggested commit message:
+
+`Stabilize V1 auth engine and update project handoff`
+
+Suggested VS Code PowerShell sequence:
+
+```powershell
+git status
+git add -A
+git commit -m "Stabilize V1 auth engine and update project handoff"
+git push
+```
+
+If `git status` shows secrets, unexpected generated files, or local-only credentials, inspect them before `git add -A`.
+
+---
+
+# 36. FINAL CONTINUATION NOTE
+
+Do **not** re-plan this project from zero next session.
+
+Resume with:
+
+> Forgot/reset password → Resend invitation → Profile/identity foundation.
+
+Then finish the remaining V1 engine and QA items.
+
+Only after the engine is stable should the major premium UI/navigation redesign and animation work resume.
+
+Preserve the locked visual direction:
+
+- purple/gold brand
+- mobile-first composition
+- premium whitespace
+- custom controls
+- consistent admin shell
+- signature reveal animation
+- restrained microinteractions
+- soft “Living Light”
+- guided “Journey” onboarding
+- “Calm Progress” dashboard feedback
+- optional companion later
+- no excessive Awwwards/WebGL-style effects
+
+The assistant should continue as a senior engineer/designer who is willing to reject unnecessary complexity.

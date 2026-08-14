@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -21,7 +20,6 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/auth.css">
-
 </head>
 
 
@@ -37,12 +35,14 @@
                 aria-label="The Unleash Tribe home"
             >
 
-                <span class="auth-brand-symbol">
+                <span
+                    class="auth-brand-symbol"
+                    aria-hidden="true"
+                >
                     UT
                 </span>
 
                 <span>
-
                     <strong>
                         The Unleash Tribe
                     </strong>
@@ -50,10 +50,10 @@
                     <small>
                         Daily Check In
                     </small>
-
                 </span>
 
             </a>
+
 
             <a
                 href="index.html"
@@ -78,9 +78,11 @@
                 Member Access
             </p>
 
+
             <h1 id="login-title">
                 Welcome back.
             </h1>
+
 
             <p class="auth-intro">
                 Sign in to continue your Daily Check In.
@@ -96,19 +98,25 @@
             ></div>
 
 
-            <form id="login-form" novalidate>
+            <form
+                id="login-form"
+                novalidate
+            >
 
                 <div class="form-field">
 
-                    <label for="email">
-                        Email address
+                    <label for="username">
+                        Username
                     </label>
 
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        autocomplete="email"
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        autocapitalize="none"
+                        spellcheck="false"
+                        maxlength="30"
                         required
                     >
 
@@ -126,6 +134,7 @@
                         id="password"
                         name="password"
                         autocomplete="current-password"
+                        maxlength="128"
                         required
                     >
 
@@ -156,9 +165,11 @@
                 <span>New here?</span>
             </div>
 
+
             <p class="auth-footer-copy">
                 Membership requires approval from The Unleash Tribe.
             </p>
+
 
             <a
                 href="request-access.html"

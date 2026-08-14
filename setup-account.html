@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,14 +11,17 @@
 
     <title>Set Up Account | The Unleash Tribe</title>
 
+    <meta
+        name="description"
+        content="Complete your approved The Unleash Tribe member account."
+    >
+
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/onboarding.css">
-
 </head>
-
 
 <body class="auth-page">
 
@@ -30,24 +32,19 @@
             <a
                 href="index.html"
                 class="auth-brand"
+                aria-label="The Unleash Tribe home"
             >
-
-                <span class="auth-brand-symbol">
+                <span
+                    class="auth-brand-symbol"
+                    aria-hidden="true"
+                >
                     UT
                 </span>
 
                 <span>
-
-                    <strong>
-                        The Unleash Tribe
-                    </strong>
-
-                    <small>
-                        Account Setup
-                    </small>
-
+                    <strong>The Unleash Tribe</strong>
+                    <small>Account Setup</small>
                 </span>
-
             </a>
 
         </div>
@@ -57,20 +54,22 @@
 
     <main class="onboarding-main">
 
-        <section class="setup-card">
+        <section
+            class="setup-card"
+            aria-labelledby="setup-title"
+        >
 
             <p class="auth-eyebrow">
                 Welcome to the Tribe
             </p>
 
-            <h1>
-                Complete your account.
+            <h1 id="setup-title">
+                Create your account.
             </h1>
 
             <p>
-                Choose your username and password.
-                Your email has been verified through
-                the invitation you received.
+                Your membership has been approved.
+                Choose the username and password you will use to sign in.
             </p>
 
 
@@ -86,11 +85,24 @@
             <form
                 id="setup-form"
                 class="setup-form"
+                novalidate
                 hidden
             >
 
-                <label>
+                <label for="setup-email">
+                    Email
 
+                    <input
+                        id="setup-email"
+                        type="email"
+                        autocomplete="email"
+                        readonly
+                        aria-readonly="true"
+                    >
+                </label>
+
+
+                <label for="setup-username">
                     Username
 
                     <input
@@ -98,45 +110,45 @@
                         type="text"
                         minlength="3"
                         maxlength="30"
-                        pattern="[A-Za-z0-9_]{3,30}"
                         autocomplete="username"
+                        autocapitalize="words"
+                        spellcheck="false"
+                        placeholder="e.g. King Michael"
                         required
                     >
 
                     <small>
-                        3–30 letters, numbers or underscores.
+                        3–30 characters. Letters, numbers, spaces,
+                        hyphens and underscores are allowed.
                     </small>
-
                 </label>
 
 
-                <label>
-
+                <label for="setup-password">
                     Password
 
                     <input
                         id="setup-password"
                         type="password"
                         minlength="8"
+                        maxlength="128"
                         autocomplete="new-password"
                         required
                     >
-
                 </label>
 
 
-                <label>
-
+                <label for="setup-confirm-password">
                     Confirm Password
 
                     <input
                         id="setup-confirm-password"
                         type="password"
                         minlength="8"
+                        maxlength="128"
                         autocomplete="new-password"
                         required
                     >
-
                 </label>
 
 

@@ -1,74 +1,193 @@
 ﻿import { supabase } from "../supabase.js";
 
-const form = document.querySelector("#login-form");
-const emailInput = document.querySelector("#email");
-const passwordInput = document.querySelector("#password");
-const loginButton = document.querySelector("#login-button");
-const message = document.querySelector("#auth-message");
+
+const form =
+    document.querySelector("#login-form");
+
+const usernameInput =
+    document.querySelector("#username");
+
+const passwordInput =
+    document.querySelector("#password");
+
+const loginButton =
+    document.querySelector("#login-button");
+
+const message =
+    document.querySelector("#auth-message");
 
 
-function showMessage(text, type = "") {
+function showMessage(
+    text,
+    type = ""
+) {
 
-    message.textContent = text;
-    message.className = "auth-message";
+    message.textContent =
+        text;
+
+    message.className =
+        "auth-message";
 
     if (type) {
         message.classList.add(type);
     }
 
     message.hidden = false;
+
 }
 
 
 function hideMessage() {
 
     message.hidden = true;
+
     message.textContent = "";
-    message.className = "auth-message";
+
+    message.className =
+        "auth-message";
+
 }
 
 
-async function getCurrentProfile(userId) {
+function normalizeUsername(value = "") {
 
-    const { data, error } = await supabase
-        .from("profiles")
-        .select("id, email, full_name, role, status")
-        .eq("id", userId)
-        .single();
+    return value
+        .trim()
+        .replace(/\s+/g, " ");
+
+}
+
+
+async function getCurrentProfile(
+    userId
+) {
+
+    const {
+        data,
+        error
+    } =
+        await supabase
+            .from("profiles")
+            .select(
+                "id, email, full_name, username, role, status"
+            )
+            .eq(
+                "id",
+                userId
+            )
+            .single();
+
 
     if (error) {
         throw error;
     }
 
+
     return data;
+
+}
+
+
+async function getFunctionErrorMessage(
+    error
+) {
+
+    if (!error) {
+        return "Unable to sign in.";
+    }
+
+
+    const response =
+        error.context;
+
+
+    if (
+        response &&
+        typeof response.clone ===
+            "function"
+    ) {
+
+        try {
+
+            const payload =
+                await response
+                    .clone()
+                    .json();
+
+
+            if (
+                typeof payload?.error ===
+                "string"
+            ) {
+
+                return payload.error;
+
+            }
+
+        }
+        catch {
+            // Fall back to the SDK error below.
+        }
+
+    }
+
+
+    return (
+        error.message ||
+        "Unable to sign in."
+    );
+
 }
 
 
 async function redirectExistingSession() {
 
     const {
-        data: { session }
-    } = await supabase.auth.getSession();
+        data: {
+            session
+        }
+    } =
+        await supabase.auth.getSession();
+
 
     if (!session?.user) {
         return;
     }
 
+
     try {
 
-        const profile = await getCurrentProfile(
-            session.user.id
-        );
+        const profile =
+            await getCurrentProfile(
+                session.user.id
+            );
 
-        if (profile.status === "active") {
-            window.location.replace("dashboard.html");
+
+        if (
+            profile.status ===
+            "active"
+        ) {
+
+            window.location.replace(
+                "dashboard.html"
+            );
+
+            return;
+
         }
+
+
+        await supabase
+            .auth
+            .signOut({
+                scope: "local"
+            });
 
     }
     catch (error) {
 
         console.error(
-            "Existing session profile check failed:",
+            "Existing session check failed:",
             error
         );
 
@@ -77,11 +196,13 @@ async function redirectExistingSession() {
 }
 
 
-const query = new URLSearchParams(
-    window.location.search
-);
+const query =
+    new URLSearchParams(
+        window.location.search
+    );
 
-const reason = query.get("reason");
+const reason =
+    query.get("reason");
 
 
 if (reason === "session") {
@@ -91,7 +212,9 @@ if (reason === "session") {
     );
 
 }
-else if (reason === "inactive") {
+else if (
+    reason === "inactive"
+) {
 
     showMessage(
         "Your account is not currently active.",
@@ -99,10 +222,22 @@ else if (reason === "inactive") {
     );
 
 }
-else if (reason === "logout") {
+else if (
+    reason === "logout"
+) {
 
     showMessage(
         "You have been signed out.",
+        "success"
+    );
+
+}
+else if (
+    reason === "setup"
+) {
+
+    showMessage(
+        "Account setup complete. Sign in with your username.",
         "success"
     );
 
@@ -114,63 +249,166 @@ form.addEventListener(
     async (event) => {
 
         event.preventDefault();
+
         hideMessage();
 
-        const email = emailInput.value
-            .trim()
-            .toLowerCase();
 
-        const password = passwordInput.value;
+        const username =
+            normalizeUsername(
+                usernameInput.value
+            );
+
+        const password =
+            passwordInput.value;
 
 
-        if (!email || !password) {
+        if (
+            !username ||
+            !password
+        ) {
 
             showMessage(
-                "Enter both your email address and password.",
+                "Enter your username and password.",
                 "error"
             );
 
             return;
+
         }
 
 
         loginButton.disabled = true;
-        loginButton.textContent = "Signing in...";
+
+        loginButton.textContent =
+            "Signing in...";
 
 
         try {
 
+            /*
+             * Username resolution occurs inside the trusted
+             * Edge Function.
+             *
+             * The browser never receives or queries the email
+             * address that corresponds to another username.
+             */
             const {
                 data,
                 error
-            } = await supabase.auth.signInWithPassword({
-                email,
-                password
-            });
+            } =
+                await supabase
+                    .functions
+                    .invoke(
+                        "username-login",
+                        {
+                            body: {
+                                username,
+                                password
+                            }
+                        }
+                    );
 
 
             if (error) {
-                throw error;
+
+                const errorMessage =
+                    await getFunctionErrorMessage(
+                        error
+                    );
+
+                throw new Error(
+                    errorMessage
+                );
+
             }
 
 
-            const profile = await getCurrentProfile(
-                data.user.id
-            );
+            if (
+                !data?.access_token ||
+                !data?.refresh_token
+            ) {
 
-
-            if (profile.status !== "active") {
-
-                await supabase.auth.signOut();
-
-                showMessage(
-                    profile.status === "disabled"
-                        ? "Your account has been disabled. Contact an administrator."
-                        : "Your membership has not been approved yet.",
-                    "error"
+                throw new Error(
+                    "Unable to establish your session."
                 );
 
-                return;
+            }
+
+
+            /*
+             * Persist the authenticated session returned by
+             * the trusted login function into this browser's
+             * normal Supabase client.
+             */
+            const {
+                data: sessionData,
+                error: sessionError
+            } =
+                await supabase
+                    .auth
+                    .setSession({
+                        access_token:
+                            data.access_token,
+
+                        refresh_token:
+                            data.refresh_token
+                    });
+
+
+            if (sessionError) {
+                throw sessionError;
+            }
+
+
+            if (
+                !sessionData?.user
+            ) {
+
+                throw new Error(
+                    "Unable to establish your session."
+                );
+
+            }
+
+
+            const profile =
+                await getCurrentProfile(
+                    sessionData.user.id
+                );
+
+
+            if (
+                profile.status !==
+                "active"
+            ) {
+
+                await supabase
+                    .auth
+                    .signOut({
+                        scope: "local"
+                    });
+
+
+                throw new Error(
+                    "Your account is not currently active."
+                );
+
+            }
+
+
+            if (!profile.username) {
+
+                await supabase
+                    .auth
+                    .signOut({
+                        scope: "local"
+                    });
+
+
+                throw new Error(
+                    "Your account setup is incomplete. Contact an administrator."
+                );
+
             }
 
 
@@ -186,9 +424,10 @@ form.addEventListener(
                 error
             );
 
+
             showMessage(
                 error?.message ||
-                "Unable to sign in. Please try again.",
+                "Invalid username or password.",
                 "error"
             );
 
@@ -196,7 +435,9 @@ form.addEventListener(
         finally {
 
             loginButton.disabled = false;
-            loginButton.textContent = "Sign In";
+
+            loginButton.textContent =
+                "Sign In";
 
         }
 

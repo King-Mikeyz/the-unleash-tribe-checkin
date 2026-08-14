@@ -45,9 +45,6 @@ const adminTasksLink =
     document.querySelector("#admin-tasks-link");
 
 
-let dashboardState = null;
-
-
 function escapeHtml(value = "") {
 
     return String(value)
@@ -60,30 +57,43 @@ function escapeHtml(value = "") {
 }
 
 
-function getFirstName(fullName = "") {
+function getDisplayIdentity(profile = {}) {
 
-    const cleanName =
-        fullName.trim();
+    const username =
+        String(
+            profile.username || ""
+        ).trim();
 
-    if (!cleanName) {
-        return "Member";
+    if (username) {
+        return username;
     }
 
-    return cleanName.split(/\s+/)[0];
+
+    const fullName =
+        String(
+            profile.full_name || ""
+        ).trim();
+
+    if (fullName) {
+        return fullName;
+    }
+
+
+    return "Member";
 
 }
 
 
-function getInitials(fullName = "") {
+function getInitials(value = "") {
 
     const parts =
-        fullName
+        String(value)
             .trim()
             .split(/\s+/)
             .filter(Boolean);
 
 
-    if (parts.length === 0) {
+    if (!parts.length) {
         return "UT";
     }
 
@@ -137,8 +147,12 @@ function renderClosedState(data) {
 
     windowStatus.hidden = false;
 
+
     windowStatus.innerHTML = `
-        <strong>Daily Check In is currently closed.</strong>
+        <strong>
+            Daily Check In is currently closed.
+        </strong>
+
         <div>
             The accountability window runs from
             ${escapeHtml(data.open_time)}
@@ -147,6 +161,7 @@ function renderClosedState(data) {
             (${escapeHtml(data.timezone)}).
         </div>
     `;
+
 
     taskList.innerHTML = `
         <div class="dashboard-loading">
@@ -158,26 +173,154 @@ function renderClosedState(data) {
 }
 
 
+function renderTaskMarkup(task) {
+
+    return `
+        <button
+            type="button"
+            class="child-task-button ${
+                task.completed
+                    ? "is-complete"
+                    : ""
+            }"
+            data-task-id="${escapeHtml(task.id)}"
+            data-completed="${
+                task.completed
+                    ? "true"
+                    : "false"
+            }"
+        >
+
+            <span
+                class="child-check"
+                aria-hidden="true"
+            >
+                ✓
+            </span>
+
+            <span class="child-task-label">
+                ${escapeHtml(task.label)}
+            </span>
+
+            ${
+                task.required
+                    ? `
+                        <span class="required-mark">
+                            REQUIRED
+                        </span>
+                    `
+                    : ""
+            }
+
+        </button>
+    `;
+
+}
+
+
+function renderCategory(
+    category,
+    index
+) {
+
+    const tasks =
+        Array.isArray(
+            category.tasks
+        )
+            ? category.tasks
+            : [];
+
+
+    const taskMarkup =
+        tasks
+            .map(
+                renderTaskMarkup
+            )
+            .join("");
+
+
+    return `
+        <article
+            class="parent-task ${
+                category.completed
+                    ? "is-complete"
+                    : ""
+            }"
+        >
+
+            <div class="parent-task-header">
+
+                <div>
+
+                    <div class="parent-task-number">
+                        ${String(index + 1).padStart(2, "0")}
+                    </div>
+
+                    <h2>
+                        ${escapeHtml(category.name)}
+                    </h2>
+
+                    <div class="parent-progress">
+                        ${
+                            category.completed_required_tasks ?? 0
+                        }
+                        /
+                        ${
+                            category.required_tasks ?? 0
+                        }
+                        required tasks complete
+                    </div>
+
+                </div>
+
+
+                <span class="parent-status">
+
+                    ${
+                        category.completed
+                            ? "✓ Done"
+                            : "Not Done"
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="child-task-list">
+                ${taskMarkup}
+            </div>
+
+        </article>
+    `;
+
+}
+
+
 function renderDashboard(data) {
 
-    dashboardState = data;
-
     streakCount.textContent =
-        String(data.streak ?? 0);
+        String(
+            data?.streak ?? 0
+        );
 
 
-    if (!data.is_open) {
+    if (!data?.is_open) {
 
         accountabilityDate.textContent =
             "The Daily Check In is currently closed.";
 
-        renderClosedState(data);
+        renderClosedState(
+            data || {}
+        );
 
         return;
+
     }
 
 
     windowStatus.hidden = true;
+
 
     accountabilityDate.textContent =
         `${formatAccountabilityDate(
@@ -193,25 +336,34 @@ function renderDashboard(data) {
 
     progressSection.hidden = false;
 
+
     progressRing.style.setProperty(
         "--progress",
         String(percentage)
     );
 
+
     progressPercentage.textContent =
         `${percentage}%`;
 
+
     progressCount.textContent =
-        `${data.completed_categories} / ${data.total_categories} completed`;
+        `${
+            data.completed_categories ?? 0
+        } / ${
+            data.total_categories ?? 0
+        } completed`;
 
 
     const categories =
-        Array.isArray(data.categories)
+        Array.isArray(
+            data.categories
+        )
             ? data.categories
             : [];
 
 
-    if (categories.length === 0) {
+    if (!categories.length) {
 
         taskList.innerHTML = `
             <div class="dashboard-loading">
@@ -221,120 +373,14 @@ function renderDashboard(data) {
         `;
 
         return;
+
     }
 
 
     taskList.innerHTML =
         categories
             .map(
-                (category, index) => {
-
-                    const tasks =
-                        Array.isArray(category.tasks)
-                            ? category.tasks
-                            : [];
-
-
-                    const taskMarkup =
-                        tasks
-                            .map(
-                                (task) => `
-                                    <button
-                                        type="button"
-                                        class="child-task-button ${
-                                            task.completed
-                                                ? "is-complete"
-                                                : ""
-                                        }"
-                                        data-task-id="${task.id}"
-                                        data-completed="${
-                                            task.completed
-                                                ? "true"
-                                                : "false"
-                                        }"
-                                    >
-
-                                        <span
-                                            class="child-check"
-                                            aria-hidden="true"
-                                        >
-                                            ✓
-                                        </span>
-
-                                        <span class="child-task-label">
-                                            ${escapeHtml(task.label)}
-                                        </span>
-
-                                        ${
-                                            task.required
-                                                ? `
-                                                    <span class="required-mark">
-                                                        REQUIRED
-                                                    </span>
-                                                `
-                                                : ""
-                                        }
-
-                                    </button>
-                                `
-                            )
-                            .join("");
-
-
-                    return `
-                        <article
-                            class="parent-task ${
-                                category.completed
-                                    ? "is-complete"
-                                    : ""
-                            }"
-                        >
-
-                            <div class="parent-task-header">
-
-                                <div>
-
-                                    <div class="parent-task-number">
-                                        ${String(index + 1).padStart(2, "0")}
-                                    </div>
-
-                                    <h2>
-                                        ${escapeHtml(category.name)}
-                                    </h2>
-
-                                    <div class="parent-progress">
-                                        ${
-                                            category.completed_required_tasks
-                                        }
-                                        /
-                                        ${
-                                            category.required_tasks
-                                        }
-                                        required tasks complete
-                                    </div>
-
-                                </div>
-
-
-                                <span class="parent-status">
-                                    ${
-                                        category.completed
-                                            ? "✓ Done"
-                                            : "Not Done"
-                                    }
-                                </span>
-
-                            </div>
-
-
-                            <div class="child-task-list">
-                                ${taskMarkup}
-                            </div>
-
-                        </article>
-                    `;
-
-                }
+                renderCategory
             )
             .join("");
 
@@ -346,9 +392,10 @@ async function loadDashboard() {
     const {
         data,
         error
-    } = await supabase.rpc(
-        "get_today_checkin_dashboard"
-    );
+    } =
+        await supabase.rpc(
+            "get_today_checkin_dashboard"
+        );
 
 
     if (error) {
@@ -358,6 +405,7 @@ async function loadDashboard() {
             error
         );
 
+
         taskList.innerHTML = `
             <div class="dashboard-loading">
                 Unable to load today's tasks.
@@ -366,6 +414,7 @@ async function loadDashboard() {
         `;
 
         return;
+
     }
 
 
@@ -400,39 +449,49 @@ taskList.addEventListener(
         button.disabled = true;
 
 
-        const {
-            data,
-            error
-        } = await supabase.rpc(
-            "set_checkin_task_state",
-            {
-                p_checklist_item_id:
-                    taskId,
+        try {
 
-                p_completed:
-                    !currentState
+            const {
+                data,
+                error
+            } =
+                await supabase.rpc(
+                    "set_checkin_task_state",
+                    {
+                        p_checklist_item_id:
+                            taskId,
+
+                        p_completed:
+                            !currentState
+                    }
+                );
+
+
+            if (error) {
+                throw error;
             }
-        );
 
 
-        if (error) {
+            renderDashboard(data);
+
+        }
+        catch (error) {
 
             console.error(
                 "Task update failed:",
                 error
             );
 
+
             button.disabled = false;
 
+
             window.alert(
-                error.message
+                error?.message ||
+                "Unable to update this task."
             );
 
-            return;
         }
-
-
-        renderDashboard(data);
 
     }
 );
@@ -444,7 +503,13 @@ logoutButton.addEventListener(
 
         logoutButton.disabled = true;
 
-        await supabase.auth.signOut();
+
+        await supabase
+            .auth
+            .signOut({
+                scope: "local"
+            });
+
 
         window.location.replace(
             "login.html?reason=logout"
@@ -465,22 +530,39 @@ async function initializeDashboard() {
     }
 
 
-    const { profile } =
+    const {
+        profile
+    } =
         context;
 
 
-    memberName.textContent =
-        getFirstName(
-            profile.full_name
+    const displayIdentity =
+        getDisplayIdentity(
+            profile
         );
+
+
+    /*
+     * The member's chosen username is now the primary
+     * dashboard identity.
+     *
+     * full_name is only a fallback for legacy accounts that
+     * have not yet completed username setup.
+     */
+    memberName.textContent =
+        displayIdentity;
+
 
     memberAvatar.textContent =
         getInitials(
-            profile.full_name
+            displayIdentity
         );
 
 
-    if (profile.role === "admin") {
+    if (
+        profile.role ===
+        "admin"
+    ) {
 
         adminRequestsLink.hidden =
             false;

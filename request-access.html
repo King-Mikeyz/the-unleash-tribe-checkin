@@ -17,11 +17,30 @@
         content="Apply to join The Unleash Tribe accountability community."
     >
 
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/auth.css">
-    <link rel="stylesheet" href="css/onboarding.css">
+    <link
+        rel="stylesheet"
+        href="css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/global.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/auth.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/onboarding.css"
+    >
 
 </head>
 
@@ -35,9 +54,13 @@
             <a
                 href="index.html"
                 class="auth-brand"
+                aria-label="The Unleash Tribe home"
             >
 
-                <span class="auth-brand-symbol">
+                <span
+                    class="auth-brand-symbol"
+                    aria-hidden="true"
+                >
                     UT
                 </span>
 
@@ -91,7 +114,7 @@
 
             <div
                 id="request-message"
-                class="auth-message"
+                class="auth-message onboarding-message"
                 role="status"
                 aria-live="polite"
                 hidden
@@ -104,11 +127,13 @@
                 novalidate
             >
 
-                <section class="question-section">
+                <section class="question-section account-section">
 
                     <div class="question-section-heading">
 
-                        <span>Account</span>
+                        <span aria-hidden="true">
+                            00
+                        </span>
 
                         <h2>
                             Contact Information
@@ -119,7 +144,7 @@
 
                     <div class="question-grid">
 
-                        <label class="question-field">
+                        <label class="question-field onboarding-email-field">
 
                             <span>
                                 Email Address
@@ -130,13 +155,10 @@
                                 id="application-email"
                                 type="email"
                                 autocomplete="email"
+                                inputmode="email"
+                                placeholder="you@example.com"
                                 required
                             >
-
-                            <small>
-                                This email will receive your account invitation
-                                if your application is approved.
-                            </small>
 
                         </label>
 
@@ -148,7 +170,11 @@
                 <div id="dynamic-questions">
 
                     <div class="question-loading">
-                        Loading onboarding questions...
+
+                        <span class="question-loading-dot"></span>
+
+                        Loading application questions...
+
                     </div>
 
                 </div>
@@ -165,9 +191,8 @@
                         >
 
                         <span>
-                            I understand that my application responses
-                            will be reviewed by authorized administrators
-                            of The Unleash Tribe for membership and support purposes.
+                            I consent to authorized administrators reviewing
+                            my responses for membership purposes.
                         </span>
 
                     </label>
