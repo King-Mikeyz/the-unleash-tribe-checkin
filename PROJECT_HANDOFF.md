@@ -1459,3 +1459,247 @@ Now:
 
 Next session should continue with:
 Invitation resend capability and later UI/UX research/design improvements.
+
+
+
+
+
+
+
+Project Handoff Update — Invitation Management Upgrade
+Project: The Unleash Tribe Check-in
+Date: 26 September 2026
+Session Focus: Secure invitation tracking and resend invitation workflow
+
+Session Summary
+This session focused on improving the member invitation workflow by adding invitation tracking and a secure resend invitation capability while keeping Supabase Auth responsible for invitation security and token generation.
+
+The main objective was to strengthen the invitation lifecycle without replacing the existing authentication architecture.
+
+Completed Work
+1. Supabase Migration Synchronisation Fixed
+Issue
+The local migration history was not aligned with the existing remote Supabase database.
+
+Running:
+
+supabase db push
+caused Supabase to attempt replaying previous migrations against an already existing database.
+
+Investigation
+The remote Supabase database was confirmed to already contain the application schema, including existing tables such as:
+
+profiles
+access_requests
+admin_audit_log
+daily_checkins
+onboarding tables
+other platform tables
+Resolution
+Migration history was repaired so Supabase recognised the previously applied migrations.
+
+Verified migrations:
+
+20260812010000
+20260812013000
+20260812030000
+20260812194000
+20260812200000
+20260812210000
+20260813170000
+20260813171500
+20260813180000
+Current migration state:
+
+Existing migrations aligned successfully.
+New invitation tracking migration added separately.
+2. Migration Encoding Issue Fixed
+Problem
+Migration files contained UTF-8 BOM characters at the beginning of SQL files, causing Supabase migration parsing issues.
+
+Detected encoding:
+
+EF BB BF
+Resolution
+Removed BOM characters from migration SQL files.
+
+Verified migration files now load correctly through Supabase CLI.
+
+3. Invitation Tracking Migration Added
+Migration File
+supabase/migrations/20260926000000_create_invitation_tracking.sql
+Purpose
+Create an application-level invitation tracking system while keeping Supabase Auth as the secure invitation provider.
+
+Supabase Auth remains responsible for:
+
+invitation token generation
+secure invitation links
+account activation workflow
+The application layer tracks:
+
+invitation history
+invitation status
+resend activity
+administrator actions
+4. Resend Invitation Edge Function Created
+New Function
+supabase/functions/resend-invitation/index.ts
+Deployment Status
+Successfully deployed.
+
+Deployment command:
+
+supabase functions deploy resend-invitation
+Function Responsibilities
+The function:
+
+validates administrator authentication
+checks administrator permissions
+validates invitation eligibility
+sends a new Supabase Auth invitation
+records invitation activity
+maintains audit history
+Database Relationship Discovery
+The relationship between access requests and profiles was confirmed.
+
+profiles table
+Contains:
+
+id
+email
+full_name
+role
+status
+approved_by
+approved_at
+username
+username_normalized
+access_requests table
+Contains:
+
+id
+full_name
+email
+message
+status
+reviewed_by
+reviewed_at
+rejection_reason
+user_id
+questionnaire_version_id
+Relationship
+access_requests.user_id
+          |
+          v
+      profiles.id
+Important implementation decision:
+
+At the invitation stage, the user may not yet have completed account creation. Therefore invitation tracking should not depend on an existing profile ID.
+
+Current Task In Progress
+File
+supabase/functions/invite-approved-member/index.ts
+Existing Flow
+access_requests
+        |
+        v
+invite-approved-member
+        |
+        v
+Supabase Auth inviteUserByEmail()
+        |
+        v
+admin_audit_log
+The function already contains:
+
+CORS handling
+authenticated user verification
+administrator validation
+access request validation
+Supabase Auth invitation sending
+audit logging
+Remaining Work
+1. Complete invite-approved-member Integration
+Update:
+
+supabase/functions/invite-approved-member/index.ts
+Required change:
+
+Add invitation tracking after successful invitation sending.
+
+Target flow:
+
+access_requests
+        |
+        v
+invite-approved-member
+        |
+        v
+Supabase Auth inviteUserByEmail()
+        |
+        v
+invitation_tracking
+        |
+        v
+admin_audit_log
+The existing security and authentication logic must remain unchanged.
+
+2. Deploy Updated Function
+After updating the function:
+
+supabase functions deploy invite-approved-member
+3. Update Members Dashboard
+File:
+
+js/pages/members.js
+Required additions:
+
+Add Resend Invitation action
+Connect button to resend-invitation Edge Function
+Add success and error notifications
+Expected workflow:
+
+Admin Dashboard
+        |
+        v
+Members Page
+        |
+        v
+Select Pending Member
+        |
+        v
+Resend Invitation
+        |
+        v
+resend-invitation Edge Function
+        |
+        v
+New Supabase Auth Invitation
+Testing Checklist
+Initial Invitation Test
+Approve a member application.
+Confirm invitation email is generated.
+Confirm invitation_tracking receives a record.
+Confirm admin_audit_log records the action.
+Resend Invitation Test
+Select a pending member.
+Trigger resend invitation.
+Confirm a new invitation email is generated.
+Confirm invitation tracking updates correctly.
+Confirm previous invitation history remains available.
+Current Development Position
+Completed:
+
+Migration repair
+Migration encoding cleanup
+Invitation tracking migration
+Resend invitation Edge Function deployment
+Current stopping point:
+
+invite-approved-member integration
+Next developer action:
+
+Continue by updating the existing invitation sender function, deploy it, then connect the resend invitation action to the members dashboard.
+
+
