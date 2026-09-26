@@ -1,4 +1,4 @@
-﻿begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -2416,4 +2416,4 @@ on function private.admin_archive_checklist_item_impl(
 to authenticated;
 
 
-commit;
+

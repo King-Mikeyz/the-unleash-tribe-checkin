@@ -1,4 +1,4 @@
-begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -172,4 +172,3 @@ on function public.admin_get_application_answers(uuid)
 to authenticated;
 
 
-commit;

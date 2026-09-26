@@ -1,4 +1,4 @@
-﻿begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -2306,4 +2306,4 @@ on function public.admin_set_user_status(
 to authenticated;
 
 
-commit;
+

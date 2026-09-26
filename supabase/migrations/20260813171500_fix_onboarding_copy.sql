@@ -1,4 +1,4 @@
-begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -20,21 +20,21 @@ begin;
 
 update public.onboarding_questions
 set label =
-    'What are your top 3–5 goals for 2026?'
+    'What are your top 3â€“5 goals for 2026?'
 where question_key =
     'goals_2026';
 
 
 update public.onboarding_questions
 set label =
-    'On a scale of 1–10, how committed are you to personal growth?'
+    'On a scale of 1â€“10, how committed are you to personal growth?'
 where question_key =
     'growth_commitment';
 
 
 update public.onboarding_questions
 set label =
-    'Are you willing to attend daily 5:30–6:00 AM sessions?'
+    'Are you willing to attend daily 5:30â€“6:00 AM sessions?'
 where question_key =
     'attend_daily_sessions';
 
@@ -46,8 +46,8 @@ where question_key =
 update public.onboarding_questions
 set options =
     '[
-        "12-month plan — Genesis to Revelation, approximately 3–4 chapters daily",
-        "9-month plan — Genesis to Revelation, approximately 4–5 chapters daily"
+        "12-month plan â€” Genesis to Revelation, approximately 3â€“4 chapters daily",
+        "9-month plan â€” Genesis to Revelation, approximately 4â€“5 chapters daily"
     ]'::jsonb
 where question_key =
     'bible_reading_plan';
@@ -70,4 +70,3 @@ where question_key in (
 );
 
 
-commit;

@@ -1,4 +1,4 @@
-begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -1748,4 +1748,3 @@ on function public.admin_backfill_checkin(
 to authenticated;
 
 
-commit;

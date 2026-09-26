@@ -1,4 +1,4 @@
-﻿begin;
+
 
 create or replace function private.member_set_checkin_task_state(
     p_checklist_item_id uuid,
@@ -202,4 +202,4 @@ on function private.member_set_checkin_task_state(
 to authenticated;
 
 
-commit;
+

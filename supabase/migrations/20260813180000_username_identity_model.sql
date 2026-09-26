@@ -1,4 +1,4 @@
-begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -145,7 +145,7 @@ execute function
 --
 -- Requirements:
 --
--- 3–30 characters
+-- 3â€“30 characters
 -- starts/ends with letter or number
 -- spaces, underscores and hyphens allowed internally
 -- ---------------------------------------------------------
@@ -200,4 +200,3 @@ on table public.profiles
 from authenticated;
 
 
-commit;

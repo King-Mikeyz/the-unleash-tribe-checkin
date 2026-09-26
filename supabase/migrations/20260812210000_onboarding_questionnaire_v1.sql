@@ -1,4 +1,4 @@
-begin;
+
 
 -- =========================================================
 -- THE UNLEASH TRIBE
@@ -607,7 +607,7 @@ begin
             'goals',
             'Goals & Success',
             'goals_2026',
-            'What are your top 3–5 goals for 2026?',
+            'What are your top 3â€“5 goals for 2026?',
             'This wording is editable by administrators for future years.',
             'long_text',
             '[]',
@@ -685,7 +685,7 @@ begin
             'growth',
             'Personal Growth',
             'growth_commitment',
-            'On a scale of 1–10, how committed are you to personal growth?',
+            'On a scale of 1â€“10, how committed are you to personal growth?',
             null,
             'scale',
             '[]',
@@ -698,7 +698,7 @@ begin
             'commitment',
             'Commitment',
             'attend_daily_sessions',
-            'Are you willing to attend daily 5:30–6:00 AM sessions?',
+            'Are you willing to attend daily 5:30â€“6:00 AM sessions?',
             'Times are interpreted in The Unleash Tribe community timezone.',
             'single_choice',
             '["Yes","No","Sometimes"]',
@@ -740,7 +740,7 @@ begin
             'Which Bible reading plan would you like to do?',
             null,
             'single_choice',
-            '["12-month plan — Genesis to Revelation, approximately 3–4 chapters daily","9-month plan — Genesis to Revelation, approximately 4–5 chapters daily"]',
+            '["12-month plan â€” Genesis to Revelation, approximately 3â€“4 chapters daily","9-month plan â€” Genesis to Revelation, approximately 4â€“5 chapters daily"]',
             true,
             280
         );
@@ -2131,4 +2131,3 @@ on function public.admin_get_application_answers(uuid)
 to authenticated;
 
 
-commit;
